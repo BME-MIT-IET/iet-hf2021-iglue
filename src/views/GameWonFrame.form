@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.GameWonFrame">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="973" height="762"/>
+    </constraints>
+    <properties>
+      <preferredSize width="800" height="800"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="a8dc3" binding="jTextPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties>
+          <background color="-8541700"/>
+          <preferredSize width="600" height="400"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="28463" class="javax.swing.JLabel" binding="lGameWon">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <font name="Consolas" size="90" style="1"/>
+              <foreground color="-5"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="300" height="100"/>
+              <text value="Game Won"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="bba19" binding="jButtonsPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <background color="-8541700"/>
+          <preferredSize width="600" height="325"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="6d181" class="javax.swing.JButton" binding="bExit">
+            <constraints/>
+            <properties>
+              <background color="-12828607"/>
+              <font name="Consolas" size="48" style="1"/>
+              <foreground color="-5"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="600" height="175"/>
+              <text value="Exit"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
