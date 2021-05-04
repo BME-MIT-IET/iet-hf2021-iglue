@@ -8,6 +8,8 @@ import Prototype.Test;
 
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -54,6 +56,7 @@ public class GameplayFrame {
     private JButton bDown;
     private JButton bRight;
     private Timer timer;
+
     /**
      * konstruktor
      */
@@ -61,14 +64,17 @@ public class GameplayFrame {
         $$$setupUI$$$();
         InitListeners();
     }
+
     /**
      * random valaszt a directionok kozul
+     *
      * @return
      */
     private Direction randomDir() {
         int pick = new Random().nextInt(Direction.values().length);
         return Direction.values()[pick];
     }
+
     /**
      * frissiti a nezetet
      */
@@ -79,6 +85,7 @@ public class GameplayFrame {
         numberofActualHealthLabel.setText(String.valueOf(currentPlayer.getActualHealth()));
         refreshItemListModel();
     }
+
     /**
      * a listenerek inicializalasaert felelos osztaly
      */
@@ -130,7 +137,7 @@ public class GameplayFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (currentPlayer instanceof Researcher) {
-                    if (chosenField != null){
+                    if (chosenField != null) {
                         currentPlayer.UseAbility(chosenField);
                         chosenField.isInspected = true;
                     }
@@ -209,29 +216,37 @@ public class GameplayFrame {
             }
         });
     }
+
     /**
      * beallitja a kivalalasztott irany alapjon a kivalasztott fieldet
+     *
      * @param dir a kivalasztott irany
      */
     public static void setChosenField(Direction dir) {
         chosenField = currentPlayer.getField().getNeighboursWithDir().get(dir);
     }
+
     /**
      * visszaadja a soron levo jatekost
+     *
      * @return
      */
     public static Player getCurrentPlayer() {
         return currentPlayer;
     }
+
     /**
      * visszaadja a kivalasztott fieldet
+     *
      * @return
      */
     public static Field getChosenField() {
         return chosenField;
     }
+
     /**
      * futtatja a jatek frame-jet
+     *
      * @param ps
      */
     public static void Run(HashMap<String, String> ps) {
@@ -575,7 +590,10 @@ public class GameplayFrame {
                 resultName = currentFont.getName();
             }
         }
-        return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
+        Font font = new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
+        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
+        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
+        return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
 
     /**
@@ -584,4 +602,5 @@ public class GameplayFrame {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }
