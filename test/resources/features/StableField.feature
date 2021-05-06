@@ -2,8 +2,11 @@
 Feature: Stable ice field
   Scenario: A bunch of actor moves to a stable ice field
     Given a stable ice field
-    Given 69 eskimo
-    Given 69 researcher
+    And 69 eskimos
+    And 69 researchers
+
     When the eskimos move to the field
     And the researchers move to the field
-    Then none of them should be in water
+
+    Then none of the eskimos should be in water
+    And none of the researchers should be in water
