@@ -19,19 +19,19 @@ public class IceFieldTests {
     
     @io.cucumber.java.en.Given("^a stable ice field$")
     public void aStableIceField() {
-        field.setCapacity(Integer.MAX_VALUE);
+        field.setCapacity(-1);
     }
 
     @io.cucumber.java.en.Given("^(\\d+) eskimos$")
-    public void eskimos(int arg0) {
-        for (int i = 0; i < arg0; i++) {
+    public void eskimos(int numOfEskimos) {
+        for (int i = 0; i < numOfEskimos; i++) {
             eskimos.add(new Eskimo());
         }
     }
 
     @io.cucumber.java.en.Given("^(\\d+) researchers$")
-    public void researchers(int arg0) {
-        for (int i = 0; i < arg0; i++) {
+    public void researchers(int numOfResearchers) {
+        for (int i = 0; i < numOfResearchers; i++) {
             researchers.add(new Researcher());
         }
     }
@@ -79,7 +79,7 @@ public class IceFieldTests {
     }
 
     @And("the snow level should be {int}")
-    public void theSnowLevelShouldBe(int arg0) {
-        if (field.getLayerOfSnow() != arg0) fail();
+    public void theSnowLevelShouldBe(int snowLevel) {
+        if (field.getLayerOfSnow() != snowLevel) fail();
     }
 }
