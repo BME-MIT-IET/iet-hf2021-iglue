@@ -2,6 +2,7 @@ package Game;
 
 import Field.Field;
 
+import java.lang.reflect.Constructor;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -66,9 +67,9 @@ public final class Game {
         List<Object> newObjects = new ArrayList<>();
         fields = new ArrayList<>();
 
-        SpawnFields(WIDTH, HEIGHT);
+        InitFields(WIDTH, HEIGHT);
 
-        SpawnItems(WIDTH * HEIGHT);
+        InitItems(WIDTH * HEIGHT);
 
         //polarbear
         PolarBear pb = PolarBear.getInstance();
@@ -93,7 +94,7 @@ public final class Game {
      * @param WIDTH a jatekter szelessege
      * @param HEIGHT a jatekter magassaga
      */
-    private void SpawnFields(int WIDTH, int HEIGHT) {
+    private void InitFields(int WIDTH, int HEIGHT) {
         // A ciklusok sorrendje nem mindegy, mivel az alapján kerülnek be a jegtablak a fields listaba
         for (int y = 0; y < HEIGHT; y++)
             for (int x = 0; x < WIDTH; x++)
@@ -172,75 +173,80 @@ public final class Game {
      * Lehelyezi a jatekter mezoire a kulonbozo Itemeket
      * @param NumberOfFields a jatekter mezoinek a szama
      */
-    private void SpawnItems(int NumberOfFields) {
-        //Winning Item
-        int cnt = 0;
-        while (cnt < 3){
-            Field field = fields.get(random.nextInt(NumberOfFields));
-            if (field.getItem() == null && field instanceof IceBlock ){
-                WinningItem winningItem = new WinningItem(cnt);
-                field.setItem(winningItem);
-                winningItem.setField((IceBlock)field);
-                view.AddView(new WinningItemView(winningItem));
-                cnt++;
+    private void InitItems(int NumberOfFields) {
+        try {
+            int i = 0;
+            while (i < 3){
+                Field field = fields.get(random.nextInt(NumberOfFields));
+                if (field.getItem() == null && field instanceof IceBlock ){
+                    SpawnSingleItem(WinningItem.class, WinningItemView.class, i, field);
+                    i++;
+                }
             }
-        }
-        // Tent
-        for (int i = 0; i < NumberOfFields /15; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock ){
-                Tent tent = new Tent();
-                field.setItem(tent);
-                tent.setField((IceBlock)field);
-                view.AddView(new TentView(tent));
-            }
-        }
-        // Swimsuit
-        for (int i = 0; i < NumberOfFields /15; i++ ) {
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Swimsuit swimsuit = new Swimsuit();
-                field.setItem(swimsuit);
-                swimsuit.setField((IceBlock)field);
-                view.AddView(new SwimsuitView(swimsuit));
-            }
-        }
-        // Spade
-        for (int i = 0; i < NumberOfFields /15; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Spade spade = new Spade(3);
-                field.setItem(spade);
-                spade.setField((IceBlock)field);
-                view.AddView(new SpadeView(spade));
-            }
-        }
-        // Rope
-        for (int i = 0; i < NumberOfFields /15; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Rope rope = new Rope();
-                field.setItem(rope);
-                rope.setField((IceBlock)field);
-                view.AddView(new RopeView(rope));
-            }
-        }
-        // Food
-        for (int i = 0; i < NumberOfFields /7; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Food food = new Food();
-                field.setItem(food);
-                food.setField((IceBlock)field);
-                view.AddView(new FoodView(food));
-            }
-        }
 
+            SpawnItems(NumberOfFields/15, Tent.class, TentView.class);
+            SpawnItems(NumberOfFields/15, Swimsuit.class, SwimsuitView.class);
+            SpawnItems(NumberOfFields/15, Spade.class, SpadeView.class, 3);
+            SpawnItems(NumberOfFields/15, Rope.class, RopeView.class);
+            SpawnItems(NumberOfFields/7, Food.class, FoodView.class);
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Adott mennyisegu Itemet hoz letre a jatekteren belul.
+     * @param amount hany Itemet hozzon letre
+     * @param ItemClass milyen Itemeket hozzon letre
+     * @param ItemViewClass milyen ItemView tartozik az Itemekhez
+     * @throws ReflectiveOperationException az adott Item es ItemView osztalyok nem elvart viselkedese eseten dobodik
+     */
+    private void SpawnItems(int amount, Class<? extends Item> ItemClass, Class<? extends IView> ItemViewClass) throws ReflectiveOperationException {
+        SpawnItems(amount, ItemClass, ItemViewClass, null);
+    }
+
+    /**
+     * Adott mennyisegu Itemet hoz letre a jatekteren belul, es a konstruktoruknak atad egy parametert.
+     * @param amount hany Itemet hozzon letre
+     * @param ItemClass milyen Itemeket hozzon letre
+     * @param ItemViewClass milyen ItemView tartozik az Itemekhez
+     * @param intArgOfItem az Item konstrukoktoranak a parametere (egy Integer, de a konstruktor int-kent kapja meg)
+     * @throws ReflectiveOperationException az adott Item es ItemView osztalyok nem elvart viselkedese eseten dobodik
+     */
+    private void SpawnItems(int amount, Class<? extends Item> ItemClass, Class<? extends IView> ItemViewClass, Integer intArgOfItem) throws ReflectiveOperationException {
+        for (int i = 0; i < amount; i++ ){
+            int randomField = random.nextInt(fields.size());
+            Field field = fields.get(randomField);
+            if (field.getItem() == null && field instanceof IceBlock ){
+                SpawnSingleItem(ItemClass, ItemViewClass, intArgOfItem, field);
+            }
+        }
+    }
+
+    /**
+     * Konkret letrehozasa egy darab Itemnek a megfelelo jegtablan egy adott parameterrel.
+     * @param ItemClass milyen Itemet hozzon letre
+     * @param ItemViewClass miylen ItemView tartozik az Itemhez
+     * @param intArgOfItem az Item konstrukoktoranak a parametere (egy Integer, de a konstruktor int-kent kapja meg)
+     * @param field hol helyezze el az Itemet
+     * @throws ReflectiveOperationException az adott Item es ItemView osztalyok nem elvart viselkedese eseten dobodik
+     */
+    private void SpawnSingleItem(Class<? extends Item> ItemClass, Class<? extends IView> ItemViewClass, Integer intArgOfItem, Field field) throws ReflectiveOperationException {
+        Constructor<? extends Item> itemConstructor;
+        if (intArgOfItem != null)
+            itemConstructor = ItemClass.getDeclaredConstructor(int.class);
+        else
+            itemConstructor = ItemClass.getDeclaredConstructor();
+        Constructor<? extends IView> viewConstructor = ItemViewClass.getDeclaredConstructor(ItemClass);
+
+        Item item;
+        if (intArgOfItem != null)
+            item = itemConstructor.newInstance(intArgOfItem);
+        else
+            item = itemConstructor.newInstance();
+        field.setItem(item);
+        item.setField((IceBlock) field);
+        view.AddView(viewConstructor.newInstance(item));
     }
 
     /**
