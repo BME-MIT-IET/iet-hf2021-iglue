@@ -148,7 +148,7 @@ public abstract class Player extends Entity implements OutputToString{
     /**
      *  A menedzser kozli a playerrel, hogy az o kore kovetkezik
      */
-    public synchronized void yourTurn() throws InterruptedException {
+    public synchronized void HaveTurn() throws InterruptedException {
         GameplayFrame.currentPlayer = this;
         actualWorkUnit = 4;
         endTurn = false;

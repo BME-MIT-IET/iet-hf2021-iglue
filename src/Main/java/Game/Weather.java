@@ -98,7 +98,7 @@ public final class Weather implements Actor{
      * weather a soros
      */
     @Override
-    public void yourTurn() {
+    public void HaveTurn() {
         //majd gui-ban meghatarozott mezokre tortenik ez a hivas
         List<Field> struck;
         Random rand = new Random();

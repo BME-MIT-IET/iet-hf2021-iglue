@@ -56,7 +56,7 @@ public final class PolarBear extends Entity implements OutputToString{
      * manager megmondja a macinak hogy o a soros
      */
     @Override
-    public void yourTurn() {
+    public void HaveTurn() {
         HashMap<Direction, Field> neighbours = field.getNeighboursWithDir();
         Field target = null;
         while(target == null) {

@@ -144,7 +144,7 @@ public final class Manager {
                 TurnPassed();
 
                 //Actor kore jon
-                a.yourTurn();
+                a.HaveTurn();
 
             }
         }
