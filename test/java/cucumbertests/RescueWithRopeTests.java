@@ -97,12 +97,6 @@ public class RescueWithRopeTests {
 
     @And("these fields are not neighboring")
     public void theseFieldsAreNotNeighboring() {
-        /*escape.AddNeighbour(Direction.LEFT, null);
-        escape.AddNeighbour(Direction.RIGHT, null);
-        escape.AddNeighbour(Direction.UP, null);
-        escape.AddNeighbour(Direction.DOWN, null);*/
-        //We don't set the fields to be neighboring
-        //doNothing();
     }
 
     @Then("the eskimo should stay in water")
