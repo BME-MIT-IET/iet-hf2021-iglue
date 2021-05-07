@@ -1,9 +1,11 @@
 #Gradle ignore
-  
 .gradle
 **/build/
 !src/**/build/
 
+
+#Sonarlint ignore
+.ide/sonarlint/
 
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
