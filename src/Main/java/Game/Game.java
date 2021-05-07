@@ -2,6 +2,7 @@ package Game;
 
 import Field.Field;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 import Item.*;
@@ -16,6 +17,7 @@ public final class Game {
     private View view = new View();
     private static boolean gameWon = false;
     private static boolean gameLost = false;
+    private static final SecureRandom random = new SecureRandom();
     public static ArrayList<Field> getFields() {
         return fields;
     }
@@ -68,7 +70,6 @@ public final class Game {
         
         List<Object> newObjects = new ArrayList<>();
         fields = new ArrayList<Field>();
-        Random random = new Random();
 
         for (int i = 0; i<HEIGHT; i++){
             for (int j = 0; j < WIDTH; j++){
