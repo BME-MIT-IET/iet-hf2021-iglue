@@ -60,131 +60,16 @@ public final class Game {
      * elinditja a jatekot
      */
     public List<Object> InitMap(){
-        double P_ICEFIELD = 0.9;
         int WIDTH = 14;
         int HEIGHT = 14;
-        int NUMBER_OF_FIELDS = WIDTH * HEIGHT;
-        int MAX_SNOW_THICKNESS = 3;
-        int MAX_CAPACITY = 4;
-        
+
         List<Object> newObjects = new ArrayList<>();
         fields = new ArrayList<>();
 
-        for (int i = 0; i<HEIGHT; i++){
-            for (int j = 0; j < WIDTH; j++){
-                double prob = random.nextDouble();
-                if (prob > P_ICEFIELD){
-                    int thickness = random.nextInt(MAX_SNOW_THICKNESS);
-                    Hole hole = new Hole();
-                    hole.X = j;
-                    hole.Y = i;
-                    double snowProb = random.nextDouble();
-                    if(snowProb > 0.5)
-                        hole.setLayerOfSnow(thickness);
-                    fields.add(hole);
-                    view.AddView(new HoleView(hole));
-                }
-                else {
-                    IceBlock iceblock = new IceBlock();
-                    int thickness = random.nextInt(MAX_SNOW_THICKNESS);
+        SpawnFields(WIDTH, HEIGHT);
 
-                    int capacity = random.nextInt(MAX_CAPACITY + 1);
-                    if (capacity >= MAX_CAPACITY) {
-                        iceblock.setCapacity(-1);
-                    } else {
-                        iceblock.setCapacity(capacity + 1);
-                    }
-                    double snowProb = random.nextDouble();
-                    if(snowProb > 0.5)
-                        iceblock.setLayerOfSnow(thickness);
+        SpawnItems(WIDTH * HEIGHT);
 
-                    iceblock.X = j;
-                    iceblock.Y = i;
-                    fields.add(iceblock);
-                    view.AddView(new IceBlockView(iceblock));
-                }
-            }
-        }
-        for (int i = 0; i < HEIGHT; i++){
-            for (int j = 0; j < WIDTH; j++){
-                Field current = fields.get(j+i*WIDTH);
-                if (i-1 >= 0)
-                    current.AddNeighbour(Direction.UP, fields.get(j+(i-1)*WIDTH));
-                if (i+1 < HEIGHT)
-                    current.AddNeighbour(Direction.DOWN, fields.get(j+(i+1)*WIDTH));
-                if (j-1 >= 0)
-                    current.AddNeighbour(Direction.LEFT, fields.get(j-1+i*WIDTH));
-                if (j+1 < WIDTH)
-                    current.AddNeighbour(Direction.RIGHT, fields.get(j+1+i*WIDTH));
-            }
-        }
-        //Winning Item
-        int cnt = 0;
-        while (cnt < 3){
-            Field field = fields.get(random.nextInt(NUMBER_OF_FIELDS));
-            if (field.getItem() == null && field instanceof IceBlock ){
-                WinningItem winningItem = new WinningItem(cnt);
-                field.setItem(winningItem);
-                winningItem.setField((IceBlock)field);
-                view.AddView(new WinningItemView(winningItem));
-                cnt++;
-            }
-        }
-        // Tent
-        for (int i = 0; i < NUMBER_OF_FIELDS /15; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock ){
-                Tent tent = new Tent();
-                field.setItem(tent);
-                tent.setField((IceBlock)field);
-                view.AddView(new TentView(tent));
-            }
-        }
-        // Swimsuit
-        for (int i = 0; i < NUMBER_OF_FIELDS /15; i++ ) {
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Swimsuit swimsuit = new Swimsuit();
-                field.setItem(swimsuit);
-                swimsuit.setField((IceBlock)field);
-                view.AddView(new SwimsuitView(swimsuit));
-            }
-        }
-        // Spade
-        for (int i = 0; i < NUMBER_OF_FIELDS /15; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Spade spade = new Spade(3);
-                field.setItem(spade);
-                spade.setField((IceBlock)field);
-                view.AddView(new SpadeView(spade));
-            }
-        }
-        // Rope
-        for (int i = 0; i < NUMBER_OF_FIELDS /15; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Rope rope = new Rope();
-                field.setItem(rope);
-                rope.setField((IceBlock)field);
-                view.AddView(new RopeView(rope));
-            }
-        }
-        // Food
-        for (int i = 0; i < NUMBER_OF_FIELDS /7; i++ ){
-            int randomField = random.nextInt(fields.size());
-            Field field = fields.get(randomField);
-            if (field.getItem() == null && field instanceof IceBlock) {
-                Food food = new Food();
-                field.setItem(food);
-                food.setField((IceBlock)field);
-                view.AddView(new FoodView(food));
-            }
-        }
         //polarbear
         PolarBear pb = PolarBear.getInstance();
         int randField = random.nextInt(fields.size());
@@ -202,6 +87,162 @@ public final class Game {
         }
         return newObjects;
     }
+
+    /**
+     * Letrehozza a jatekter jegtablait, es beallitja rajtuk a megfelelo osszekotteteseket
+     * @param WIDTH a jatekter szelessege
+     * @param HEIGHT a jatekter magassaga
+     */
+    private void SpawnFields(int WIDTH, int HEIGHT) {
+        // A ciklusok sorrendje nem mindegy, mivel az alapján kerülnek be a jegtablak a fields listaba
+        for (int y = 0; y < HEIGHT; y++)
+            for (int x = 0; x < WIDTH; x++)
+                CreateField(x, y);
+        ConnectFields(WIDTH, HEIGHT);
+    }
+
+    /**
+     * Letrehoz egy jegtablat (ami lehet lyuk is) a megadott helyre a jatekteren,
+     * majd hozzaadja a megfelelo listakhoz.
+     * @param X a jegtabla X koordinataja
+     * @param Y a jegtabla Y koordinataja
+     */
+    private void CreateField(int X, int Y) {
+        double P_ICEFIELD = 0.9;
+        int MAX_SNOW_THICKNESS = 3;
+        int MAX_CAPACITY = 4;
+
+        double prob = random.nextDouble();
+        int thickness = random.nextInt(MAX_SNOW_THICKNESS);
+        double snowProb = random.nextDouble();
+
+        Field f;
+
+        // f egy Hole
+        if (prob > P_ICEFIELD){
+            f = new Hole();
+
+            view.AddView(new HoleView((Hole)f));
+        }
+        // f egy IceBlock
+        else {
+            f = new IceBlock();
+
+            int capacity = random.nextInt(MAX_CAPACITY + 1);
+            if (capacity >= MAX_CAPACITY) {
+                f.setCapacity(-1);
+            } else {
+                f.setCapacity(capacity + 1);
+            }
+
+
+            view.AddView(new IceBlockView((IceBlock) f));
+        }
+
+        if(snowProb > 0.5)
+            f.setLayerOfSnow(thickness);
+
+        f.X = X;
+        f.Y = Y;
+        fields.add(f);
+    }
+
+    /**
+     * A jatek mezoi kozotti szomszedsagi kapcsolatokat hozza letre.
+     * @param WIDTH a jatekter szelessege mezok szamaban
+     * @param HEIGHT a jatekter magassaga mezok szamaban
+     */
+    private void ConnectFields(int WIDTH, int HEIGHT) {
+        for (int y = 0; y < HEIGHT; y++){
+            for (int x = 0; x < WIDTH; x++){
+                Field current = fields.get(x+y* WIDTH);
+                if (y-1 >= 0)
+                    current.AddNeighbour(Direction.UP, fields.get(x + (y-1) * WIDTH));
+                if (y+1 < HEIGHT)
+                    current.AddNeighbour(Direction.DOWN, fields.get(x + (y+1) * WIDTH));
+                if (x-1 >= 0)
+                    current.AddNeighbour(Direction.LEFT, fields.get(x-1 + y * WIDTH));
+                if (x+1 < WIDTH)
+                    current.AddNeighbour(Direction.RIGHT, fields.get(x+1 + y * WIDTH));
+            }
+        }
+    }
+
+    /**
+     * Lehelyezi a jatekter mezoire a kulonbozo Itemeket
+     * @param NumberOfFields a jatekter mezoinek a szama
+     */
+    private void SpawnItems(int NumberOfFields) {
+        //Winning Item
+        int cnt = 0;
+        while (cnt < 3){
+            Field field = fields.get(random.nextInt(NumberOfFields));
+            if (field.getItem() == null && field instanceof IceBlock ){
+                WinningItem winningItem = new WinningItem(cnt);
+                field.setItem(winningItem);
+                winningItem.setField((IceBlock)field);
+                view.AddView(new WinningItemView(winningItem));
+                cnt++;
+            }
+        }
+        // Tent
+        for (int i = 0; i < NumberOfFields /15; i++ ){
+            int randomField = random.nextInt(fields.size());
+            Field field = fields.get(randomField);
+            if (field.getItem() == null && field instanceof IceBlock ){
+                Tent tent = new Tent();
+                field.setItem(tent);
+                tent.setField((IceBlock)field);
+                view.AddView(new TentView(tent));
+            }
+        }
+        // Swimsuit
+        for (int i = 0; i < NumberOfFields /15; i++ ) {
+            int randomField = random.nextInt(fields.size());
+            Field field = fields.get(randomField);
+            if (field.getItem() == null && field instanceof IceBlock) {
+                Swimsuit swimsuit = new Swimsuit();
+                field.setItem(swimsuit);
+                swimsuit.setField((IceBlock)field);
+                view.AddView(new SwimsuitView(swimsuit));
+            }
+        }
+        // Spade
+        for (int i = 0; i < NumberOfFields /15; i++ ){
+            int randomField = random.nextInt(fields.size());
+            Field field = fields.get(randomField);
+            if (field.getItem() == null && field instanceof IceBlock) {
+                Spade spade = new Spade(3);
+                field.setItem(spade);
+                spade.setField((IceBlock)field);
+                view.AddView(new SpadeView(spade));
+            }
+        }
+        // Rope
+        for (int i = 0; i < NumberOfFields /15; i++ ){
+            int randomField = random.nextInt(fields.size());
+            Field field = fields.get(randomField);
+            if (field.getItem() == null && field instanceof IceBlock) {
+                Rope rope = new Rope();
+                field.setItem(rope);
+                rope.setField((IceBlock)field);
+                view.AddView(new RopeView(rope));
+            }
+        }
+        // Food
+        for (int i = 0; i < NumberOfFields /7; i++ ){
+            int randomField = random.nextInt(fields.size());
+            Field field = fields.get(randomField);
+            if (field.getItem() == null && field instanceof IceBlock) {
+                Food food = new Food();
+                field.setItem(food);
+                food.setField((IceBlock)field);
+                view.AddView(new FoodView(food));
+            }
+        }
+
+    }
+
     /**
      * Jatek megnyerese
      */
