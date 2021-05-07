@@ -7,13 +7,13 @@ import Player.Player;
  */
 public interface Actor {
     /**
-     * actor actor talalkozas
-     * @param a
+     * actor actorral valo talalkozasa
+     * @param a az Actor akivel talalkozik
      */
     void Meet(Actor a);
 
     /**
-     * megmondja egy aktornak hogy o a soros
+     * actor sorra kerulese
      */
     void HaveTurn() throws InterruptedException;
 
