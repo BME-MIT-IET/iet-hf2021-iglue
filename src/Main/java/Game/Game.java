@@ -10,8 +10,7 @@ import Field.*;
 import views.*;
 
 /**
- * Inicializalja a jegtablakat. Inicializalja a jatekot, majd szamontartja, hogy eppen melyik jatekos lep.
- * Hoviharokat general a jatekosok lepesei kozott.
+ * Inicializalja a jegtablakat es a jatekot.
  */
 public final class Game {
     private View view = new View();
