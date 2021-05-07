@@ -37,8 +37,68 @@ Végeredmény: hozzá lett adva az új játékos/karakter.
 
 Végeredmény: A második játékos létrehozásakor az első játékos neve eltűnt a lenti listából, helyére az új játékos került, hibáról nem tájékoztatott a program.
 
-## Játékmenet összetettebb cselekvések tesztelése
+### Karakter képességek kipróbálása
 
-## Teljes játék lejátszása
+Teszt terv:
+
+- a) karakter léptetése
+- b) karakter típus képesség használata
+- c) ásás
+- d) tárgy felvétel
+- e) tárgy használat
+- f) korai kör befejezés
+
+**a)** karakter léptetése
+
+![](img/feladat_3_Manualis_Test/leptetes1.jpg)
+![](img/feladat_3_Manualis_Test/leptetes2.jpg)
+
+Végeredmény: a karakter pozíciója megváltozott. Csökkent az Actual work unit értéke 1-el.
+
+**b)** karakter típus képesség használata
+
+Eskimo:
+
+![](img/feladat_3_Manualis_Test/kepesseg1.jpg)
+![](img/feladat_3_Manualis_Test/kepesseg2.jpg)
+
+Researcher:
+
+![](img/feladat_3_Manualis_Test/kepesseg3.jpg)
+![](img/feladat_3_Manualis_Test/kepesseg4.jpg)
+
+Végeredmény:
+- Eskimo esetében megjelent az eskimo mezőjén egy iglu, csökkent Actual work unit értéke 1-el.
+- Researcher esetében a kijlölt mező felett megjelent egy szám, csökkent az Actual work unit értéke 1-el.
+
+**c)** ásás
+
+![](img/feladat_3_Manualis_Test/asas1.jpg)
+![](img/feladat_3_Manualis_Test/asas2.jpg)
+
+Végeredmény: Karakter alól eltünt a hó, csökkent Actual work unit értéke 1-el.
+
+**d)** tárgy felvétel
+![](img/feladat_3_Manualis_Test/targyfelvetel1.jpg)
+![](img/feladat_3_Manualis_Test/targyfelvetel2.jpg)
+
+Végeredmény: Tárgy a karakter alól eltünt, megjelent az Items listában, csökkent Actual work unit értéke 1-el.
+
+**e)** tárgy használat
+
+![](img/feladat_3_Manualis_Test/targyhasznalat1.jpg)
+![](img/feladat_3_Manualis_Test/targyhasznalat2.jpg)
+
+Végeredmény: Tárgy elűnt az items listából, Actual work unit értéke csökkent 1-el.
+
+**f)** korai kör befejezés
+
+![](img/feladat_3_Manualis_Test/koraikorveg1.jpg)
+![](img/feladat_3_Manualis_Test/koraikorveg2.jpg)
+
+Végeredmémy: A jelenlegi játékos megváltozott egy másik játékosra.
+
+## Játékmenet edge case tesztelés
+
 
 # Exploratory testing
