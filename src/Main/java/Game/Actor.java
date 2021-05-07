@@ -10,22 +10,22 @@ public interface Actor {
      * actor actor talalkozas
      * @param a
      */
-    public abstract void Meet(Actor a);
+    void Meet(Actor a);
 
     /**
      * megmondja egy aktornak hogy o a soros
      */
-    public abstract void HaveTurn() throws InterruptedException;
+    void HaveTurn() throws InterruptedException;
 
     /**
      * actor interakcioja playerrel
      * @param p a player akivel az aktor interakcioba lep
      */
-    public abstract void InteractWith(Player p);
+    void InteractWith(Player p);
 
     /**
      * actor interakcioja jegesmedvevel
      * @param p a jegesmedve akivel interaktol az aktor
      */
-    public abstract void InteractWith(PolarBear p);
+    void InteractWith(PolarBear p);
 }
