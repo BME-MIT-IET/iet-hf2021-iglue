@@ -13,7 +13,7 @@ import views.*;
  * Inicializalja a jegtablakat es a jatekot.
  */
 public final class Game {
-    private View view = new View();
+    private final View view = new View();
     private static boolean gameWon = false;
     private static boolean gameLost = false;
     private static final SecureRandom random = new SecureRandom();
@@ -43,19 +43,19 @@ public final class Game {
     }
     /**
      * Megnyert-e a jatek
-     * @return
+     * @return hogy megnyert-e a jatek
      */
     public static boolean isGameWon(){ return gameWon; }
     /**
      * Elvesztett-e a jatek
-     * @return
+     * @return hogy elveszett-e a jatek
      */
     public static boolean isGameLost(){ return gameLost; }
     /**
      * Ha privat a konstruktor senki sem tudja osszekeverni a dolgokat
      * es mindenki helyesen a getInstance fuggvenyt fogja hasznali
      */
-    private Game(){};
+    private Game(){}
     /**
      * elinditja a jatekot
      */
@@ -68,7 +68,7 @@ public final class Game {
         int MAX_CAPACITY = 4;
         
         List<Object> newObjects = new ArrayList<>();
-        fields = new ArrayList<Field>();
+        fields = new ArrayList<>();
 
         for (int i = 0; i<HEIGHT; i++){
             for (int j = 0; j < WIDTH; j++){
