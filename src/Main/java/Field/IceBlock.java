@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 /**
  * A mezo egy tipusa. A jegtablat reprezentalja a jatekban.
- * Az eszkimok tudnak ra iglut epiteni és lehetnek targyak belefagyva, melyeket a jatekosok ki tudnak belole asni.
+ * Az eszkimok tudnak ra iglut epiteni. Lehetnek targyak belefagyva, melyeket a jatekosok ki tudnak belole asni.
  */
 public class IceBlock extends Field {
     /** A mezon talalhato item **/
@@ -20,7 +20,7 @@ public class IceBlock extends Field {
 
     /**
      * visszaadja az isOpen adattagot
-     * @return
+     * @return az isOpen adattag
      */
     @Override
     public boolean IsOpen() {
@@ -75,7 +75,7 @@ public class IceBlock extends Field {
     }
 
     /**
-     *
+     * Csokkenti a ho retegek szamat
      * @param n a reteggel valo csokkentes szama
      */
     @Override
@@ -87,7 +87,7 @@ public class IceBlock extends Field {
 
     /**
      * Visszaad egy mar kiasott targyat es eltavolitja azt a mezobol.
-     * @return
+     * @return az item
      */
     @Override
     public Item RemoveItem(){
@@ -101,7 +101,7 @@ public class IceBlock extends Field {
 
     /**
      *  Beallitja az fedettseg strategiat.
-     * @param c
+     * @param c a strategy
      */
     public void Cover(Coverable c){
         cover = c;
@@ -112,7 +112,7 @@ public class IceBlock extends Field {
      * az iceblock kimeneti nyelvve valo alakitasa
      * @param objects a hashmap ami tarolja az objektumokat es a hozza tartozo
      *                id-ket
-     * @return
+     * @return a stringet
      */
     public String toString(HashMap<String,Object> objects){
         String itemString = Test.getKeyByValue(objects,this.item) == null ? "" : Test.getKeyByValue(objects,this.item);
@@ -130,7 +130,6 @@ public class IceBlock extends Field {
 
     /**
      * toString hivasra az osztaly nevevel ter vissza
-     *
      */
     @Override
     public String toString(){

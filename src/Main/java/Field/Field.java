@@ -42,9 +42,9 @@ public abstract class Field implements OutputToString {
 
     /**
      * neighbours adattag gettere
-     * @return
+     * @return a szomszedos jegtablak
      */
-    public List<Field> getNeighbours(){return neighbours;}
+    public List<Field> getNeighbours() { return neighbours; }
 
     /**
      * hozzaad a szomszedokhoz egy fieldet
@@ -60,7 +60,7 @@ public abstract class Field implements OutputToString {
     public void RemoveNeighbour(Field e){neighbours.remove(e);}
     /**
      * abstract, iceblockban van megvalositva
-     * @return
+     * @return az isOpen adattag
      */
     public abstract boolean IsOpen();
     /**
@@ -103,7 +103,7 @@ public abstract class Field implements OutputToString {
     }
     /**
      * Csokkenti a mezon levo horetegek szamat.
-     * @param n
+     * @param n hany horeteget tavolitsunk el
      */
     public abstract void DecrLayerOfSnow(int n);
     /**

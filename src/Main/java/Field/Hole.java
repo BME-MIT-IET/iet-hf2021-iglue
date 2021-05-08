@@ -19,7 +19,7 @@ public class Hole extends Field {
 
     /**
      * hole implementacio miatt false
-     * @return
+     * @return false
      */
     @Override
     public boolean IsOpen() {
@@ -31,12 +31,19 @@ public class Hole extends Field {
      * @param item az item amit elfogad
      */
     @Override
-    public void setItem(Item item) { }
+    public void setItem(Item item)
+    {
+        // mivel a hole-on nem lehetnek targyak, nem csinal semmit
+    }
+    /**
+     * hole-ban biztos nincs item igy null a visszateres
+     * @return null
+     */
     @Override
     public Item getItem(){return null;}
     /**
-     * hole-ban nicns item igy null a visszateres
-     * @return
+     * hole-ban biztos nincs item igy null a visszateres
+     * @return null
      */
     @Override
     public Item RemoveItem() {
@@ -59,7 +66,7 @@ public class Hole extends Field {
     }
 
     /**
-     *
+     * Csokkenti a ho retegek szamat
      * @param n a reteggel valo csokkentes mennyisege
      */
     @Override
@@ -69,7 +76,7 @@ public class Hole extends Field {
     }
 
     /**
-     *  Beallitja az fedettseg strategiat.
+     *  Beallitja a fedettseg strategiat.
      * @param c a strategy
      */
     public void Cover(Coverable c){ cover = new NoCover();
@@ -78,7 +85,7 @@ public class Hole extends Field {
     /**
      * hole kimeneti nyelvve valo atirasa
      * @param objects a tarolt objektumok az azonositashoz kell
-     * @return
+     * @return a stringet
      */
     public String toString(HashMap<String,Object> objects){
         String result = "field:\n" +
@@ -92,7 +99,6 @@ public class Hole extends Field {
 
     /**
      * toString hivasra az osztaly nevevel ter vissza
-     *
      */
     @Override
     public String toString(){
