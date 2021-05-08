@@ -18,15 +18,15 @@ import java.util.HashMap;
 public class IceBlock extends Field {
     /** A mezon talalhato item **/
     protected Item item = null;
-    private boolean isOpen = false;
+    private boolean open = false;
 
     /**
-     * visszaadja az isOpen adattagot
-     * @return az isOpen adattag
+     * visszaadja az open adattagot
+     * @return az open adattag
      */
     @Override
-    public boolean IsOpen() {
-        return isOpen;
+    public boolean isOpen() {
+        return open;
     }
 
     /**
@@ -45,7 +45,7 @@ public class IceBlock extends Field {
      * @param b a logikai ertek
      */
     public void setIsOpen(boolean b){
-        isOpen = b;
+        open = b;
     }
 
     /**
@@ -81,7 +81,7 @@ public class IceBlock extends Field {
     public void DecrLayerOfSnow(int n) {
         super.DecrLayerOfSnow(n);
         if(getLayerOfSnow() == 0)
-            isOpen = true;
+            open = true;
     }
 
     /**
@@ -90,7 +90,7 @@ public class IceBlock extends Field {
      */
     @Override
     public Item RemoveItem(){
-        if(isOpen) {
+        if(open) {
             Item i = item;
             item = null;
             return i;
@@ -121,7 +121,7 @@ public class IceBlock extends Field {
                 "\tlayersOfSnow: " + this.getLayerOfSnow() + "\n" +
                 "\tneighbours: " + concatNeighbours(getNeighbours(),objects) + "\n" +
                 "\tlimit: " + this.getCapacity() + "\n" +
-                "\topen: " + this.isOpen + "\n" +
+                "\topen: " + this.open + "\n" +
                 "\tcover: " + this.cover.toString() + "\n" +
                 "\titem: " + itemString;
     }

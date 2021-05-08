@@ -61,9 +61,9 @@ public abstract class Field implements OutputToString {
 
     /**
      * abstract, iceblockban van megvalositva
-     * @return az isOpen adattag
+     * @return az open adattag
      */
-    public abstract boolean IsOpen();
+    public abstract boolean isOpen();
 
     /**
      * Ezzel a setterrel lehet itemet adni a mezonek

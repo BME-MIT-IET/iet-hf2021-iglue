@@ -23,7 +23,7 @@ public class Hole extends Field {
      * @return false
      */
     @Override
-    public boolean IsOpen() {
+    public boolean isOpen() {
         return false;
     }
 
