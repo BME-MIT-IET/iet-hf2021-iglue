@@ -2,7 +2,6 @@ package Game;
 
 import Coverable.NoCover;
 import Field.Field;
-import Item.Item;
 import Player.Player;
 import Item.WinningItem;
 
@@ -19,11 +18,9 @@ public final class Manager {
 
     private static HashMap<Player,Integer> timeInWater = new HashMap<Player, Integer>();
     private static HashMap<Field,Integer> timeTent = new HashMap<Field,Integer>();
-    private static ArrayList<Item> parts = new ArrayList<Item>();
     private static ArrayList<Player> players = new ArrayList<Player>();
     private static ArrayList<WinningItem> winningItems = new ArrayList<>();
 
-    private static Player currentPlayer;
 
     public void AddActor(Actor a){
         actors.add(a);
@@ -35,7 +32,6 @@ public final class Manager {
     public static void Reset(){
         timeInWater = new HashMap<Player, Integer>();
         timeTent = new HashMap<Field,Integer>();
-        parts = new ArrayList<Item>();
         players = new ArrayList<Player>();
         winningItems = new ArrayList<>();
         actors = new ArrayList<Actor>();
