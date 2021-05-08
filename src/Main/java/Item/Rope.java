@@ -9,15 +9,15 @@ import Player.*;
 public class Rope extends Item {
     /**
      *
-     * @param p a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
+     * @param player a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
      */
     @Override
-    public void Use(Player p){
-        if(p.isInWater() || p.getField().getNeighboursWithDir().containsValue(this.getHolder().getField())) {
+    public void Use(Player player){
+        if(player.isInWater() && player.getField().getNeighboursWithDir().containsValue(this.getHolder().getField())) {
             this.getHolder().decreaseWorkUnits();
             Field target = this.getHolder().getField();
-            p.setInWater(false);
-            p.setField(target);
+            player.setInWater(false);
+            player.setField(target);
         }
     }
 
