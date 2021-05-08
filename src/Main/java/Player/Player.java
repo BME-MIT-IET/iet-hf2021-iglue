@@ -27,11 +27,8 @@ public abstract class Player extends Entity implements OutputToString {
     private boolean endTurn = false;
 
     protected Player(int actualHealth, int actualWorkUnit, int maxHealth, Field field) {
-        this.actualHealth = actualHealth;
-        this.actualWorkUnit = actualWorkUnit;
-        this.maxHealth = maxHealth;
+        this(actualHealth,actualWorkUnit,maxHealth);
         setField(field);
-        Manager.AddPlayer(this);
     }
 
     protected Player(int actualHealth, int actualWorkUnit, int maxHealth) {
