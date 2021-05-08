@@ -112,7 +112,12 @@ public abstract class Field implements OutputToString {
      * Csokkenti a mezon levo horetegek szamat.
      * @param n hany horeteget tavolitsunk el
      */
-    public abstract void DecrLayerOfSnow(int n);
+    public void DecrLayerOfSnow(int n) {
+        if (n <= getLayerOfSnow())
+            setLayerOfSnow(getLayerOfSnow()-n);
+        else
+            setLayerOfSnow(0);
+    }
 
     /**
      * Visszaadja, hogy a mezo hany jatekost bir el.

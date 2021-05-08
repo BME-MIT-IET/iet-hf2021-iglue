@@ -68,16 +68,6 @@ public class Hole extends Field {
     }
 
     /**
-     * Csokkenti a ho retegek szamat
-     * @param n a reteggel valo csokkentes mennyisege
-     */
-    @Override
-    public void DecrLayerOfSnow(int n) {
-        if(n<=getLayerOfSnow()) setLayerOfSnow(getLayerOfSnow()-n);
-        else{setLayerOfSnow(0);}
-    }
-
-    /**
      *  Beallitja a fedettseg strategiat.
      * @param c a strategy
      */

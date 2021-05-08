@@ -82,10 +82,7 @@ public class IceBlock extends Field {
      */
     @Override
     public void DecrLayerOfSnow(int n) {
-        if (n <= getLayerOfSnow())
-            setLayerOfSnow(getLayerOfSnow()-n);
-        else
-            setLayerOfSnow(0);
+        super.DecrLayerOfSnow(n);
         if(getLayerOfSnow() == 0)
             isOpen = true;
     }
