@@ -58,25 +58,34 @@ public final class Manager {
         players.add(p);
         actors.add(p);
     }
+
     public static void register(WinningItem item){
         winningItems.add(item);
     }
-    public static boolean WinningItemUsed(){
-        boolean samePlace = true;
 
-        for (int l = 0;players.size()>l&&samePlace;l++){
-            if(!players.get(l).getField().equals(players.get(0).getField())){ samePlace = false;}
-        }
-        boolean everythingOwned = true;
-        for (WinningItem i : winningItems){
+    /**
+     * Leellenorzi, hogy sikeresen hasznalja-e egy player a WinningItemet.
+     * Ehhez az kell, hogy minden jatekos egy mezon alljon es mindharom WinningItemet megszerezzek a jatekosok.
+     * @return a hasznalat eredmenyet
+     */
+    public static boolean UseWinningItem(){
+        // ha nem minden jatekos van egy helyen
+        for (Player player : players)
+            if (!player.getField().equals(players.get(0).getField()))
+                return false;
+
+        // ha nem harom winningItemunk van (jelenleg minden esetben 3nak kene lennie)
+        if(winningItems.size() != 3)
+            return false;
+
+        // ha nem minden winningitemnek van tulajdonosa
+        for (WinningItem i : winningItems)
             if (i.getHolder() == null)
-                everythingOwned = false;
-        }
-        if(samePlace && everythingOwned && winningItems.size() == 3){
-            Game.getInstance().Win();
-            return true;
-        }
-        return false;
+                return false;
+
+        // szolunk a jateknak hogy nyertunk
+        Game.getInstance().Win();
+        return true;
     }
 
     /**

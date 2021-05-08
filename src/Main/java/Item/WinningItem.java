@@ -16,7 +16,7 @@ public class WinningItem extends Item {
     @Override
     public void Use(Player p){
 
-         if (Manager.getInstance().WinningItemUsed()) {
+         if (Manager.getInstance().UseWinningItem()) {
              p.EndTurn();
              p.decreaseWorkUnits();
          }
