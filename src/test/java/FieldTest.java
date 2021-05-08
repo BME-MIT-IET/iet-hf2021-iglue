@@ -20,10 +20,12 @@ class FieldTest {
     void init() {
         currentIceBlock = new IceBlock();
         targetHole = new Hole();
-        mockPlayer = spy(Researcher.class);
+        mockPlayer = mock(Researcher.class);
     }
 
+
     @Test
+    //Jatekos vizbe esik, vizes lesz
     void Field_PlayerStepsInWater() {
         //Arrange
         mockPlayer.setField(currentIceBlock);

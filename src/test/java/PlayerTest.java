@@ -25,6 +25,7 @@ class PlayerTest {
 
 
     @Test
+    //Játékos tárgyat vesz fel (jelen esetben sátrat)
     void Player_PickUpItem() {
         //Arrange
         Item mockItem = mock(Tent.class);
@@ -41,6 +42,7 @@ class PlayerTest {
     }
 
     @Test
+    //Játékos lép, azaz mezőről mezőre lép
     void Player_Steps() {
         //Arrange
         Field mockTargetField = mock(IceBlock.class);

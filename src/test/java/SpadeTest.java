@@ -18,20 +18,21 @@ class SpadeTest {
 
     @BeforeEach
     void init() {
-        spade = new Spade(2);
+        spade = new Spade(1);
         mockField = mock(IceBlock.class);
         mockPlayer = mock(Researcher.class);
     }
 
 
     @Test
+    //Játékos havat lapátol. A munkaegysége csökken.
     void Spade_Use_WorkAmountDecreaseCheckForPlayer() {
         //Arrange
         when(mockField.getLayerOfSnow()).thenReturn(2);
         when(mockPlayer.getField()).thenReturn(mockField);
+        spade.setHolder(mockPlayer);
 
         //Act
-        spade.setHolder(mockPlayer);
         spade.Use(mockPlayer);
 
         //Assert
@@ -39,13 +40,14 @@ class SpadeTest {
     }
 
     @Test
+    //Játékos havat lapátol. Az ásó 2 egység havat takarít el a mezőről
     void Spade_Use_SnowDecrease() {
         //Arrange
         when(mockField.getLayerOfSnow()).thenReturn(2);
         when(mockPlayer.getField()).thenReturn(mockField);
+        spade.setHolder(mockPlayer);
 
         //Act
-        spade.setHolder(mockPlayer);
         spade.Use(mockPlayer);
 
         //Assert
