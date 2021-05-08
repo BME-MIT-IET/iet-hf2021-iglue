@@ -22,13 +22,13 @@ public abstract class Item implements OutputToString {
 
     /**
      * Az itemek kepesseget ezen a metoduson keresztul lehete hasznalni
-     * @param p a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
+     * @param player a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
      */
-    public abstract void Use(Player p);
+    public abstract void Use(Player player);
 
 
 
-    public void setField(IceBlock f) { field = f; }
+    public void setField(IceBlock field) { this.field = field; }
 
     public IceBlock getField() {
         if(holder == null)
@@ -38,10 +38,10 @@ public abstract class Item implements OutputToString {
 
     /**
      * A tulajdonost allitja be
-     * @param p az uj tulajdonosa az itemnek
+     * @param player az uj tulajdonosa az itemnek
      */
-    public void setHolder(Player p){
-        holder = p;
+    public void setHolder(Player player){
+        holder = player;
     }
 
     /**
@@ -53,11 +53,10 @@ public abstract class Item implements OutputToString {
     }
 
     public String toString(HashMap<String,Object> objects){
-        String holder = Test.getKeyByValue(objects,this.getHolder()) == null ?"":Test.getKeyByValue(objects,this.getHolder());
-        String result = "item:\n" +
+        String holderName = Test.getKeyByValue(objects,this.getHolder()) == null ?"":Test.getKeyByValue(objects,this.getHolder());
+        return "item:\n" +
                     "\tID: " + Test.getKeyByValue(objects,this) + "\n" +
                     "\ttype: " + toString() + "\n" +
-                    "\tholder: " + holder + "\n";
-        return result;
+                    "\tholder: " + holderName + "\n";
     }
 }

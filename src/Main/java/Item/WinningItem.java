@@ -11,14 +11,14 @@ import Player.*;
 public class WinningItem extends Item {
     /**
      *
-     * @param p a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
+     * @param player a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
      */
     @Override
-    public void Use(Player p){
+    public void Use(Player player){
 
          if (Manager.getInstance().WinningItemUsed()) {
-             p.EndTurn();
-             p.decreaseWorkUnits();
+             player.EndTurn();
+             player.decreaseWorkUnits();
          }
     }
     public int id;
