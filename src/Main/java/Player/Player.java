@@ -27,7 +27,7 @@ public abstract class Player extends Entity implements OutputToString {
     private boolean endTurn = false;
 
     protected Player(int actualHealth, int actualWorkUnit, int maxHealth, Field field) {
-        this(actualHealth,actualWorkUnit,maxHealth);
+        this(actualHealth, actualWorkUnit, maxHealth);
         setField(field);
     }
 
@@ -124,7 +124,7 @@ public abstract class Player extends Entity implements OutputToString {
     }
 
     /**
-     * @param item      az item amit a player hasznalni fog, meghivja  az itemre a use()-t
+     * @param item   az item amit a player hasznalni fog, meghivja  az itemre a use()-t
      * @param target a player amin az item hasznalva lesz (pl rope)
      */
     public void UseItem(Item item, Player target) {
