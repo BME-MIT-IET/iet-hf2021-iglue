@@ -149,3 +149,72 @@ Végeredmény: Első és második swimsuit használatnál sem történt semmi, c
 
 
 # Exploratory testing
+
+Megjegyzés: Az alábbi esetek mind lehetséges problémát jelentenek funkcinalitás szempontjából.
+
+## Játékos lista
+
+Karakterek létrehozásának sorrendje:
+
+1. Jatekos - Eskimo
+2. Jatekos1 - Eskimo
+3. Jatekos2 - Researcher
+4. Jatek - Researcher
+5. Jatek2 - Eskimo
+
+Játékosok listájának sorrendje:
+
+- Jatekos - Eskimo (1.)
+- Jatek - Researcher (4.) 
+- Jatekos2 - Researcher (3.)
+- Jatek2 - Eskimo (5.)
+- Jatekos1 - Eskimo (2.)
+
+![](img/feladat_3_Manualis_Test/tobbkarakter1.jpg)
+![](img/feladat_3_Manualis_Test/tobbkarakter2.jpg)
+![](img/feladat_3_Manualis_Test/tobbkarakter3.jpg)
+![](img/feladat_3_Manualis_Test/tobbkarakter4.jpg)
+
+Jól látható, hogy a sorrend felcserélődött.
+
+## Játékmenet
+
+Előző inputtal elindítva a játékot:
+
+A játékosok körének sorrendje megegyezik a játékosok listáján lévő sorrenddel.
+
+
+![](img/feladat_3_Manualis_Test/JatekmenetTobb1.jpg)
+![](img/feladat_3_Manualis_Test/JatekmenetTobb2.jpg)
+
+## Food item használat
+
+![](img/feladat_3_Manualis_Test/husHasznalat1.jpg)
+![](img/feladat_3_Manualis_Test/husHasznalat2.jpg)
+
+A food akkor is elhasználható, ha a játékosnak maximum élete van, tehát el tudja pazarolni.
+
+## Ásás
+
+![](img/feladat_3_Manualis_Test/asas1Hasznalat.jpg)
+![](img/feladat_3_Manualis_Test/asas2Hasznalat.jpg)
+
+Akkor is lehet ásni, amikor már nincs semmi a játékos alatt és az is csökkenti az Actual work unitot, feleslegesen.
+
+## Kilépés vízből
+
+![](img/feladat_3_Manualis_Test/vizes1.jpg)
+![](img/feladat_3_Manualis_Test/vizes2.jpg)
+
+Miután egy játékos kilépett a vízből, a karaktere utána is vizesnek néz ki, mintha vízben lenne.
+
+##  Vasteg rétegen ásás
+
+![](img/feladat_3_Manualis_Test/hoasas1.jpg)
+![](img/feladat_3_Manualis_Test/hoasas2.jpg)
+
+A képeken jól látható, hogy egy 4-es van a jobb felső sarokban, tehát 4 réteg vastag hó van a mezőn, az 1. és 2. kép között  1 dig művelet volt, de a hó eltünt, ráadásul még a szám sem csökkent pedig már minimum 1-el kisebb lett a hóréteg.
+
+## Game over start
+
+Tesztelés közben megesett, hogy játé elindítása után rögtön Game over képernyő jelent meg.
