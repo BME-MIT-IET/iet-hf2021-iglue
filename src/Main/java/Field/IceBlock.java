@@ -50,30 +50,27 @@ public class IceBlock extends Field {
 
     /**
      * jegtablara lep az entity
-     * @param e az entity aki a jegtablara lep
+     * @param entity az entity aki a jegtablara lep
      */
     @Override
-    public void Accept(Entity e) {
-        getEntites().add(e);
+    public void Accept(Entity entity) {
+        getEntites().add(entity);
 
         for (Entity i: entities) {
-            i.Meet(e);
+            i.Meet(entity);
         }
 
         int numberOfPlayers = 0;
-        for(int i = 0; i < getEntites().size(); i++){
-            if(getEntites().get(i) instanceof Player){
+        for(int i = 0; i < getEntites().size(); i++)
+            if(getEntites().get(i) instanceof Player)
                 numberOfPlayers++;
-            }
-        }
-        if (getCapacity() != -1){
-        if(numberOfPlayers > getCapacity()){
-            for (Entity i: getEntites()) {
+
+        if (getCapacity() != -1 && getCapacity() < numberOfPlayers) {
+            for (Entity i: getEntites())
                 i.setInWater(true);
-            }
-            Coverable nogloo = new NoCover();
-            Cover(nogloo);
-        }}
+            Cover(new NoCover());
+            setLayerOfSnow(0);
+        }
     }
 
     /**

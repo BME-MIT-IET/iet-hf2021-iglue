@@ -81,9 +81,9 @@ public abstract class Field implements OutputToString {
     /**
      * Uj jatekos erkezik a mezore. Ha meg elbirja a mezo, akkor a jatekos ezentul ezen a mezon áll.
      * Ha nem birja el, akkor a jatekos a vizbe esik.
-     * @param e az entity aki a mezore lep
+     * @param entity az entity aki a mezore lep
      */
-    public abstract void Accept(Entity e);
+    public abstract void Accept(Entity entity);
 
     /**
      *A parameterkent kapott jatekos elhagyja a mezot.

@@ -54,16 +54,16 @@ public class Hole extends Field {
 
     /**
      * lyukba eses
-     * @param e az entity aki a lyukba lep
+     * @param entity az entity aki a lyukba lep
      */
     @Override
-    public void Accept(Entity e) {
+    public void Accept(Entity entity) {
         this.setLayerOfSnow(0);
-        entities.add(e);
-        e.setInWater(true);
+        entities.add(entity);
+        entity.setInWater(true);
         layerOfSnow = 0;
         for (Entity i: entities) {
-            i.Meet(e);
+            i.Meet(entity);
         }
     }
 
