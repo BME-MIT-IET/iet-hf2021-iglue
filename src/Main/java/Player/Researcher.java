@@ -16,15 +16,15 @@ public class Researcher extends Player {
     }
 
     /**
-     * @param f A mezo amire a kepesseget hasznalja majd a player (Oda epit Iglut vagy deriti fel)
+     * @param field A mezo amire a kepesseget hasznalja majd a player (Oda epit Iglut vagy deriti fel)
      * @return visszater a mezo teherbiro kepessegevel
      */
     @Override
-    public int UseAbility(Field f) {
+    public int UseAbility(Field field) {
         if (getActualWorkUnit()>0)
             if(!isInWater()){
                 setActualWorkUnit(getActualWorkUnit() - 1);
-                return f.getCapacity();
+                return field.getCapacity();
             }
         return -1;
     }

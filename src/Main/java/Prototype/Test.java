@@ -396,7 +396,7 @@ public class Test {
      */
     private void blizzard( List<String> fieldIds){
         if (fieldIds == null)
-           Weather.getInstance().yourTurn();
+           Weather.getInstance().HaveTurn();
         else{
             List<Field> list = new ArrayList<>();
 
@@ -413,7 +413,7 @@ public class Test {
      */
     private void polarstep(String direction) {
         if (direction == null)
-            PolarBear.getInstance().yourTurn();
+            PolarBear.getInstance().HaveTurn();
         else
             PolarBear.getInstance().Step((Field)actors.get(direction));
     }

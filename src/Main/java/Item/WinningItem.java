@@ -18,7 +18,7 @@ public class WinningItem extends Item {
 
          if (Manager.getInstance().WinningItemUsed()) {
              p.EndTurn();
-             p.decreaseWorkUnits();
+             p.DecreaseWorkUnits();
          }
     }
     public int id;

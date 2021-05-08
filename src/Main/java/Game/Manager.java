@@ -89,7 +89,7 @@ public final class Manager {
      */
     public static void Update(Player p){
         if(!p.isWaterproof()) {
-            if (p.IsInWater()) {
+            if (p.isInWater()) {
                 timeInWater.put(p, 0);
             } else {
                 timeInWater.remove(p);
@@ -144,7 +144,7 @@ public final class Manager {
                 TurnPassed();
 
                 //Actor kore jon
-                a.yourTurn();
+                a.HaveTurn();
 
             }
         }
