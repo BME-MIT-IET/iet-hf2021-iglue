@@ -1,9 +1,11 @@
 package Field;
 
-import Coverable.*;
+import Coverable.Coverable;
+import Coverable.TentCover;
+import Coverable.NoCover;
 import Game.Entity;
 import Game.Manager;
-import Item.*;
+import Item.Item;
 import Player.Player;
 import Prototype.Test;
 
@@ -116,8 +118,8 @@ public class IceBlock extends Field {
      */
     public String toString(HashMap<String,Object> objects){
         String itemString = Test.getKeyByValue(objects,this.item) == null ? "" : Test.getKeyByValue(objects,this.item);
-        String result = "field:\n" +
-                "\tID: " + Test.getKeyByValue(objects,this) + "\n" +
+        return "field:\n" +
+                "\tID: " + Test.getKeyByValue(objects, this) + "\n" +
                 "\ttype: " + "iceblock" + "\n" +
                 "\tlayersOfSnow: " + this.getLayerOfSnow() + "\n" +
                 "\tneighbours: " + concatNeighbours(getNeighbours(),objects) + "\n" +
@@ -125,7 +127,6 @@ public class IceBlock extends Field {
                 "\topen: " + this.isOpen + "\n" +
                 "\tcover: " + this.cover.toString() + "\n" +
                 "\titem: " + itemString;
-        return result;
     }
 
     /**

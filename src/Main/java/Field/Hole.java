@@ -1,7 +1,8 @@
 package Field;
 
 
-import Coverable.*;
+import Coverable.Coverable;
+import Coverable.NoCover;
 import Game.Entity;
 
 import Item.Item;
@@ -41,6 +42,7 @@ public class Hole extends Field {
      */
     @Override
     public Item getItem(){return null;}
+
     /**
      * hole-ban biztos nincs item igy null a visszateres
      * @return null
@@ -88,13 +90,12 @@ public class Hole extends Field {
      * @return a stringet
      */
     public String toString(HashMap<String,Object> objects){
-        String result = "field:\n" +
-                "\tID: " + Test.getKeyByValue(objects,this) + "\n" +
+        return "field:\n" +
+                "\tID: " + Test.getKeyByValue(objects, this) + "\n" +
                 "\ttype: " + "hole" + "\n" +
                 "\tlayersOfSnow: " + this.getLayerOfSnow() + "\n" +
                 "\tneighbours: " + concatNeighbours(getNeighbours(),objects) + "\n" +
                 "\tlimit: " + this.getCapacity();
-        return result;
     }
 
     /**
