@@ -8,9 +8,9 @@ import Player.Player;
 public interface Actor {
     /**
      * actor actorral valo talalkozasa
-     * @param a az Actor akivel talalkozik
+     * @param actor az Actor akivel talalkozik
      */
-    void Meet(Actor a);
+    void Meet(Actor actor);
 
     /**
      * actor sorra kerulese
@@ -19,13 +19,13 @@ public interface Actor {
 
     /**
      * actor interakcioja playerrel
-     * @param p a player akivel az aktor interakcioba lep
+     * @param player a player akivel az aktor interakcioba lep
      */
-    void InteractWith(Player p);
+    void InteractWith(Player player);
 
     /**
      * actor interakcioja jegesmedvevel
-     * @param p a jegesmedve akivel interaktol az aktor
+     * @param polarBear a jegesmedve akivel interaktol az aktor
      */
-    void InteractWith(PolarBear p);
+    void InteractWith(PolarBear polarBear);
 }

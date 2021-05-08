@@ -141,8 +141,8 @@ public abstract class Player extends Entity implements OutputToString{
     }
 
     @Override
-    public void Meet(Actor a) {
-        a.InteractWith(this);
+    public void Meet(Actor actor) {
+        actor.InteractWith(this);
     }
 
     /**
@@ -166,13 +166,13 @@ public abstract class Player extends Entity implements OutputToString{
         this.notifyAll();
     }
     @Override
-    public void InteractWith(PolarBear p) {
+    public void InteractWith(PolarBear polarBear) {
         this.EndTurn();
         Manager.Lose();
     }
 
     @Override
-    public void InteractWith(Player p) {
+    public void InteractWith(Player player) {
 
         return;
     }
