@@ -20,7 +20,7 @@ class FieldTest {
     void init() {
         currentIceBlock = new IceBlock();
         targetHole = new Hole();
-        mockPlayer = mock(Researcher.class);
+        mockPlayer = spy(Researcher.class);
     }
 
 
