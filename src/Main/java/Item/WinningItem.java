@@ -16,7 +16,7 @@ public class WinningItem extends Item {
     @Override
     public void Use(Player player){
 
-         if (Manager.getInstance().WinningItemUsed()) {
+         if (Manager.WinningItemUsed()) {
              player.EndTurn();
              player.decreaseWorkUnits();
          }
@@ -25,9 +25,9 @@ public class WinningItem extends Item {
     /**
      * A nyerotargy letrehozaskor regisztralodik a managerben
      */
-    public WinningItem(int _id){
-        id = _id;
-        Manager.getInstance().register(this);
+    public WinningItem(int id){
+        this.id = id;
+        Manager.register(this);
     }
 
     /**
