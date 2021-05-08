@@ -14,11 +14,11 @@ import java.util.*;
  */
 public final class Manager {
 
-    private static ArrayList<Actor> actors = new ArrayList<Actor>();
+    private static ArrayList<Actor> actors = new ArrayList<>();
 
-    private static HashMap<Player,Integer> timeInWater = new HashMap<Player, Integer>();
-    private static HashMap<Field,Integer> timeTent = new HashMap<Field,Integer>();
-    private static ArrayList<Player> players = new ArrayList<Player>();
+    private static HashMap<Player,Integer> timeInWater = new HashMap<>();
+    private static HashMap<Field,Integer> timeTent = new HashMap<>();
+    private static ArrayList<Player> players = new ArrayList<>();
     private static ArrayList<WinningItem> winningItems = new ArrayList<>();
 
 
@@ -30,11 +30,11 @@ public final class Manager {
      */
     private static Manager INSTANCE;
     public static void Reset(){
-        timeInWater = new HashMap<Player, Integer>();
-        timeTent = new HashMap<Field,Integer>();
-        players = new ArrayList<Player>();
+        timeInWater = new HashMap<>();
+        timeTent = new HashMap<>();
+        players = new ArrayList<>();
         winningItems = new ArrayList<>();
-        actors = new ArrayList<Actor>();
+        actors = new ArrayList<>();
     }
     /**
      * Az egyetlen manager peldannyal visszater, ha meg nem letezik meg is konstrualja
