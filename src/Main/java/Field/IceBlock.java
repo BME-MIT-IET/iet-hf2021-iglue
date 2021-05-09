@@ -1,9 +1,11 @@
 package Field;
 
-import Coverable.*;
+import Coverable.Coverable;
+import Coverable.TentCover;
+import Coverable.NoCover;
 import Game.Entity;
 import Game.Manager;
-import Item.*;
+import Item.Item;
 import Player.Player;
 import Prototype.Test;
 
@@ -11,20 +13,20 @@ import java.util.HashMap;
 
 /**
  * A mezo egy tipusa. A jegtablat reprezentalja a jatekban.
- * Az eszkimok tudnak ra iglut epiteni és lehetnek targyak belefagyva, melyeket a jatekosok ki tudnak belole asni.
+ * Az eszkimok tudnak ra iglut epiteni. Lehetnek targyak belefagyva, melyeket a jatekosok ki tudnak belole asni.
  */
 public class IceBlock extends Field {
     /** A mezon talalhato item **/
     protected Item item = null;
-    private boolean isOpen = false;
+    private boolean open = false;
 
     /**
-     * visszaadja az isOpen adattagot
-     * @return
+     * visszaadja az open adattagot
+     * @return az open adattag
      */
     @Override
-    public boolean IsOpen() {
-        return isOpen;
+    public boolean isOpen() {
+        return open;
     }
 
     /**
@@ -43,55 +45,52 @@ public class IceBlock extends Field {
      * @param b a logikai ertek
      */
     public void setIsOpen(boolean b){
-        isOpen = b;
+        open = b;
     }
 
     /**
      * jegtablara lep az entity
-     * @param e az entity aki a jegtablara lep
+     * @param entity az entity aki a jegtablara lep
      */
     @Override
-    public void Accept(Entity e) {
-        getEntites().add(e);
+    public void Accept(Entity entity) {
+        getEntites().add(entity);
 
         for (Entity i: entities) {
-            i.Meet(e);
+            i.Meet(entity);
         }
 
         int numberOfPlayers = 0;
-        for(int i = 0; i < getEntites().size(); i++){
-            if(getEntites().get(i) instanceof Player){
+        for(int i = 0; i < getEntites().size(); i++)
+            if(getEntites().get(i) instanceof Player)
                 numberOfPlayers++;
-            }
-        }
-        if (getCapacity() != -1){
-        if(numberOfPlayers > getCapacity()){
-            for (Entity i: getEntites()) {
+
+        if (getCapacity() != -1 && getCapacity() < numberOfPlayers) {
+            for (Entity i: getEntites())
                 i.setInWater(true);
-            }
-            Coverable nogloo = new NoCover();
-            Cover(nogloo);
-        }}
+            Cover(new NoCover());
+            setLayerOfSnow(0);
+        }
     }
 
     /**
-     *
+     * Csokkenti a ho retegek szamat
      * @param n a reteggel valo csokkentes szama
      */
     @Override
     public void DecrLayerOfSnow(int n) {
-        if(getLayerOfSnow()==0){isOpen = true;}
-        else if(n<=getLayerOfSnow()) setLayerOfSnow(getLayerOfSnow()-n);
-        else{setLayerOfSnow(0);}
+        super.DecrLayerOfSnow(n);
+        if(getLayerOfSnow() == 0)
+            open = true;
     }
 
     /**
      * Visszaad egy mar kiasott targyat es eltavolitja azt a mezobol.
-     * @return
+     * @return az item
      */
     @Override
     public Item RemoveItem(){
-        if(isOpen) {
+        if(open) {
             Item i = item;
             item = null;
             return i;
@@ -101,7 +100,7 @@ public class IceBlock extends Field {
 
     /**
      *  Beallitja az fedettseg strategiat.
-     * @param c
+     * @param c a strategy
      */
     public void Cover(Coverable c){
         cover = c;
@@ -112,25 +111,23 @@ public class IceBlock extends Field {
      * az iceblock kimeneti nyelvve valo alakitasa
      * @param objects a hashmap ami tarolja az objektumokat es a hozza tartozo
      *                id-ket
-     * @return
+     * @return a stringet
      */
     public String toString(HashMap<String,Object> objects){
         String itemString = Test.getKeyByValue(objects,this.item) == null ? "" : Test.getKeyByValue(objects,this.item);
-        String result = "field:\n" +
-                "\tID: " + Test.getKeyByValue(objects,this) + "\n" +
+        return "field:\n" +
+                "\tID: " + Test.getKeyByValue(objects, this) + "\n" +
                 "\ttype: " + "iceblock" + "\n" +
                 "\tlayersOfSnow: " + this.getLayerOfSnow() + "\n" +
                 "\tneighbours: " + concatNeighbours(getNeighbours(),objects) + "\n" +
                 "\tlimit: " + this.getCapacity() + "\n" +
-                "\topen: " + this.isOpen + "\n" +
+                "\topen: " + this.open + "\n" +
                 "\tcover: " + this.cover.toString() + "\n" +
                 "\titem: " + itemString;
-        return result;
     }
 
     /**
      * toString hivasra az osztaly nevevel ter vissza
-     *
      */
     @Override
     public String toString(){
