@@ -2,7 +2,6 @@ package Game;
 
 import Coverable.NoCover;
 import Field.Field;
-import Item.Item;
 import Player.Player;
 import Item.WinningItem;
 
@@ -15,15 +14,13 @@ import java.util.*;
  */
 public final class Manager {
 
-    private static ArrayList<Actor> actors = new ArrayList<Actor>();
+    private static ArrayList<Actor> actors = new ArrayList<>();
 
-    private static HashMap<Player,Integer> timeInWater = new HashMap<Player, Integer>();
-    private static HashMap<Field,Integer> timeTent = new HashMap<Field,Integer>();
-    private static ArrayList<Item> parts = new ArrayList<Item>();
-    private static ArrayList<Player> players = new ArrayList<Player>();
+    private static HashMap<Player,Integer> timeInWater = new HashMap<>();
+    private static HashMap<Field,Integer> timeTent = new HashMap<>();
+    private static ArrayList<Player> players = new ArrayList<>();
     private static ArrayList<WinningItem> winningItems = new ArrayList<>();
 
-    private static Player currentPlayer;
 
     public void AddActor(Actor a){
         actors.add(a);
@@ -33,12 +30,11 @@ public final class Manager {
      */
     private static Manager INSTANCE;
     public static void Reset(){
-        timeInWater = new HashMap<Player, Integer>();
-        timeTent = new HashMap<Field,Integer>();
-        parts = new ArrayList<Item>();
-        players = new ArrayList<Player>();
+        timeInWater = new HashMap<>();
+        timeTent = new HashMap<>();
+        players = new ArrayList<>();
         winningItems = new ArrayList<>();
-        actors = new ArrayList<Actor>();
+        actors = new ArrayList<>();
     }
     /**
      * Az egyetlen manager peldannyal visszater, ha meg nem letezik meg is konstrualja
@@ -62,25 +58,34 @@ public final class Manager {
         players.add(p);
         actors.add(p);
     }
+
     public static void register(WinningItem item){
         winningItems.add(item);
     }
-    public static boolean WinningItemUsed(){
-        boolean samePlace = true;
 
-        for (int l = 0;players.size()>l&&samePlace;l++){
-            if(!players.get(l).getField().equals(players.get(0).getField())){ samePlace = false;}
-        }
-        boolean everythingOwned = true;
-        for (WinningItem i : winningItems){
+    /**
+     * Leellenorzi, hogy sikeresen hasznalja-e egy player a WinningItemet.
+     * Ehhez az kell, hogy minden jatekos egy mezon alljon es mindharom WinningItemet megszerezzek a jatekosok.
+     * @return a hasznalat eredmenyet
+     */
+    public static boolean UseWinningItem(){
+        // ha nem minden jatekos van egy helyen
+        for (Player player : players)
+            if (!player.getField().equals(players.get(0).getField()))
+                return false;
+
+        // ha nem harom winningItemunk van (jelenleg minden esetben 3nak kene lennie)
+        if(winningItems.size() != 3)
+            return false;
+
+        // ha nem minden winningitemnek van tulajdonosa
+        for (WinningItem i : winningItems)
             if (i.getHolder() == null)
-                everythingOwned = false;
-        }
-        if(samePlace && everythingOwned && winningItems.size() == 3){
-            Game.getInstance().Win();
-            return true;
-        }
-        return false;
+                return false;
+
+        // szolunk a jateknak hogy nyertunk
+        Game.getInstance().Win();
+        return true;
     }
 
     /**
@@ -144,7 +149,7 @@ public final class Manager {
                 TurnPassed();
 
                 //Actor kore jon
-                a.yourTurn();
+                a.HaveTurn();
 
             }
         }
