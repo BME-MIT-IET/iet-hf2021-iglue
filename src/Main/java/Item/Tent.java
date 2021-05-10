@@ -14,7 +14,7 @@ public class Tent extends Item {
      */
     @Override
     public void Use(Player player) {
-        this.getHolder().decreaseWorkUnits();
+        this.getHolder().DecreaseWorkUnits();
         player.getField().Cover(new TentCover());
         getHolder().RemoveItem(this);
     }

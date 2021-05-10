@@ -13,8 +13,8 @@ public class Food extends Item {
      */
     @Override
     public void Use(Player player){
-        this.getHolder().decreaseWorkUnits();
-        player.IncrHp();
+        this.getHolder().DecreaseWorkUnits();
+        player.IncreaseHp();
         player.RemoveItem(this);
     }
 

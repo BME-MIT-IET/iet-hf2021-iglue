@@ -39,12 +39,12 @@ public final class PolarBear extends Entity implements OutputToString{
 
     /**
      * Polarbear talalkozik  aktorral
-     * @param a aktor
+     * @param actor aktor
      */
     @Override
-    public void Meet(Actor a) {
+    public void Meet(Actor actor) {
 
-        a.InteractWith(this);
+        actor.InteractWith(this);
     }
 
     private Direction randomDir(){
@@ -56,7 +56,7 @@ public final class PolarBear extends Entity implements OutputToString{
      * manager megmondja a macinak hogy o a soros
      */
     @Override
-    public void yourTurn() {
+    public void HaveTurn() {
         HashMap<Direction, Field> neighbours = field.getNeighboursWithDir();
         Field target = null;
         while(target == null) {
@@ -67,12 +67,12 @@ public final class PolarBear extends Entity implements OutputToString{
 
     /**
      * maci - player interakcio
-     * @param p a player akivel az aktor interakcioba lep
+     * @param player a player akivel az aktor interakcioba lep
      */
     @Override
-    public void InteractWith(Player p) {
+    public void InteractWith(Player player) {
 
-        if(!p.getField().IsBearProof()) {
+        if(!player.getField().IsBearProof()) {
             Manager.Lose();
         }
 
@@ -80,10 +80,10 @@ public final class PolarBear extends Entity implements OutputToString{
 
     /**
      * maci maci interakcio, nem tortenik semmi
-     * @param p a jegesmedve akivel interaktol az aktor
+     * @param polarBear a jegesmedve akivel interaktol az aktor
      */
     @Override
-    public void InteractWith(PolarBear p) {
+    public void InteractWith(PolarBear polarBear) {
         return;
     }
 

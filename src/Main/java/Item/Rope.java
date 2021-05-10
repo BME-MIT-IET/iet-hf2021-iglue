@@ -14,7 +14,7 @@ public class Rope extends Item {
     @Override
     public void Use(Player player){
         if(player.isInWater() && player.getField().getNeighboursWithDir().containsValue(this.getHolder().getField())) {
-            this.getHolder().decreaseWorkUnits();
+            this.getHolder().DecreaseWorkUnits();
             Field target = this.getHolder().getField();
             player.setInWater(false);
             player.setField(target);
