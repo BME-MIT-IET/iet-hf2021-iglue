@@ -1,7 +1,8 @@
 package Field;
 
 
-import Coverable.*;
+import Coverable.Coverable;
+import Coverable.NoCover;
 import Game.Entity;
 
 import Item.Item;
@@ -19,10 +20,10 @@ public class Hole extends Field {
 
     /**
      * hole implementacio miatt false
-     * @return
+     * @return false
      */
     @Override
-    public boolean IsOpen() {
+    public boolean isOpen() {
         return false;
     }
 
@@ -31,12 +32,20 @@ public class Hole extends Field {
      * @param item az item amit elfogad
      */
     @Override
-    public void setItem(Item item) { }
+    public void setItem(Item item)
+    {
+        // mivel a hole-on nem lehetnek targyak, nem csinal semmit
+    }
+    /**
+     * hole-ban biztos nincs item igy null a visszateres
+     * @return null
+     */
     @Override
     public Item getItem(){return null;}
+
     /**
-     * hole-ban nicns item igy null a visszateres
-     * @return
+     * hole-ban biztos nincs item igy null a visszateres
+     * @return null
      */
     @Override
     public Item RemoveItem() {
@@ -45,31 +54,21 @@ public class Hole extends Field {
 
     /**
      * lyukba eses
-     * @param e az entity aki a lyukba lep
+     * @param entity az entity aki a lyukba lep
      */
     @Override
-    public void Accept(Entity e) {
+    public void Accept(Entity entity) {
         this.setLayerOfSnow(0);
-        entities.add(e);
-        e.setInWater(true);
+        entities.add(entity);
+        entity.setInWater(true);
         layerOfSnow = 0;
         for (Entity i: entities) {
-            i.Meet(e);
+            i.Meet(entity);
         }
     }
 
     /**
-     *
-     * @param n a reteggel valo csokkentes mennyisege
-     */
-    @Override
-    public void DecrLayerOfSnow(int n) {
-        if(n<=getLayerOfSnow()) setLayerOfSnow(getLayerOfSnow()-n);
-        else{setLayerOfSnow(0);}
-    }
-
-    /**
-     *  Beallitja az fedettseg strategiat.
+     *  Beallitja a fedettseg strategiat.
      * @param c a strategy
      */
     public void Cover(Coverable c){ cover = new NoCover();
@@ -78,21 +77,19 @@ public class Hole extends Field {
     /**
      * hole kimeneti nyelvve valo atirasa
      * @param objects a tarolt objektumok az azonositashoz kell
-     * @return
+     * @return a stringet
      */
     public String toString(HashMap<String,Object> objects){
-        String result = "field:\n" +
-                "\tID: " + Test.getKeyByValue(objects,this) + "\n" +
+        return "field:\n" +
+                "\tID: " + Test.getKeyByValue(objects, this) + "\n" +
                 "\ttype: " + "hole" + "\n" +
                 "\tlayersOfSnow: " + this.getLayerOfSnow() + "\n" +
                 "\tneighbours: " + concatNeighbours(getNeighbours(),objects) + "\n" +
                 "\tlimit: " + this.getCapacity();
-        return result;
     }
 
     /**
      * toString hivasra az osztaly nevevel ter vissza
-     *
      */
     @Override
     public String toString(){

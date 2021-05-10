@@ -73,10 +73,10 @@ public final class Weather implements Actor{
 
     /**
      * weather talalkozik aktorral
-     * @param a
+     * @param actor
      */
     @Override
-    public void Meet(Actor a) {
+    public void Meet(Actor actor) {
         return;
     }
 
@@ -120,20 +120,20 @@ public final class Weather implements Actor{
 
     /**
      * weather maci interakcio
-     * @param p a jegesmedve akivel interaktol az weather
+     * @param polarBear a jegesmedve akivel interaktol az weather
      */
     @Override
-    public void InteractWith(PolarBear p) {
+    public void InteractWith(PolarBear polarBear) {
         return;
     }
 
     /**
      * weather player interakcio
-      * @param p a player akivel az aktor interakcioba lep
+      * @param player a player akivel az aktor interakcioba lep
      */
     @Override
-    public void InteractWith(Player p) {
-        if(!p.getField().IsCovered())
-            p.DecreaseHp();
+    public void InteractWith(Player player) {
+        if(!player.getField().IsCovered())
+            player.DecreaseHp();
     }
 }

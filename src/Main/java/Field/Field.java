@@ -1,14 +1,19 @@
 package Field;
 
-import Coverable.*;
+import Coverable.Coverable;
+import Coverable.NoCover;
 import Game.Entity;
 
 import Game.OutputToString;
-import Item.*;
+import Item.Item;
 import Prototype.Test;
 import views.Direction;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 
 /**
  * Absztrakt alaposztaly. Ebbol oroklodik az IceBlock és a Hole.
@@ -20,11 +25,11 @@ public abstract class Field implements OutputToString {
     /** A mezon allo playerek listaja **/
     protected List<Entity> entities = new ArrayList<>();
     /** A szomszedos mezok listaja**/
-    private List<Field> neighbours = new ArrayList<Field>();
+    private final List<Field> neighbours = new ArrayList<>();
     public HashMap<Direction, Field> getNeighboursWithDir() {
         return neighboursWithDir;
     }
-    private HashMap<Direction,Field> neighboursWithDir = new HashMap<Direction, Field>();
+    private final HashMap<Direction,Field> neighboursWithDir = new HashMap<>();
     public Coverable getCover(){return cover;}
     /** A mezo strategyje, alapertelmezetten minden mezo fedettlen **/
     protected Coverable cover = new NoCover();
@@ -42,44 +47,44 @@ public abstract class Field implements OutputToString {
 
     /**
      * neighbours adattag gettere
-     * @return
+     * @return a szomszedos jegtablak
      */
-    public List<Field> getNeighbours(){return neighbours;}
+    public List<Field> getNeighbours() { return neighbours; }
 
     /**
      * hozzaad a szomszedokhoz egy fieldet
      * @param e a hozzaadott szomszed
      */
-    public void AddNeighbour(Direction dir, Field e){
+    public void AddNeighbour(Direction dir, Field e) {
         neighboursWithDir.put(dir, e);
         neighbours.add(e);}
-    /**
-     * kitorli a parameterkent kapott fieldet a szomszedok kozul
-     * @param e a kitorlendo field
-     */
-    public void RemoveNeighbour(Field e){neighbours.remove(e);}
+
     /**
      * abstract, iceblockban van megvalositva
-     * @return
+     * @return az open adattag
      */
-    public abstract boolean IsOpen();
+    public abstract boolean isOpen();
+
     /**
      * Ezzel a setterrel lehet itemet adni a mezonek
      * @param item az item amit elfogad
      */
     public abstract void setItem(Item item);
     public abstract Item getItem();
+
     /**
      * Visszaad egy mar kiasott targyat es eltavolitja azt a mezobol.
      * @return a visszaadott item
      */
     public abstract Item RemoveItem();
+
     /**
      * Uj jatekos erkezik a mezore. Ha meg elbirja a mezo, akkor a jatekos ezentul ezen a mezon áll.
      * Ha nem birja el, akkor a jatekos a vizbe esik.
-     * @param e az entity aki a mezore lep
+     * @param entity az entity aki a mezore lep
      */
-    public abstract void Accept(Entity e);
+    public abstract void Accept(Entity entity);
+
     /**
      *A parameterkent kapott jatekos elhagyja a mezot.
      * @param e az entity aki tavozik a mezorol
@@ -95,17 +100,25 @@ public abstract class Field implements OutputToString {
     public List<Entity> getEntites() {
         return entities;
     }
+
     /**
      * Megnoveli a mezon levo horetegek szamat.
      */
     public void IncrLayerOfSnow(){
         layerOfSnow++;
     }
+
     /**
      * Csokkenti a mezon levo horetegek szamat.
-     * @param n
+     * @param n hany horeteget tavolitsunk el
      */
-    public abstract void DecrLayerOfSnow(int n);
+    public void DecrLayerOfSnow(int n) {
+        if (n <= getLayerOfSnow())
+            setLayerOfSnow(getLayerOfSnow()-n);
+        else
+            setLayerOfSnow(0);
+    }
+
     /**
      * Visszaadja, hogy a mezo hany jatekost bir el.
      * @return kapacitas
@@ -113,6 +126,7 @@ public abstract class Field implements OutputToString {
     public int getCapacity(){
        return capacity;
     }
+
     /**
      * Beallitja a capacity-t a megadott ertekre
      *
@@ -120,17 +134,20 @@ public abstract class Field implements OutputToString {
     public void setCapacity(int Capacity) {
         capacity = Capacity;
     }
+
     /**
      *  Beallitja az fedettseg strategiat.
      * @param c a strategy amit beallit
      */
     public abstract void Cover(Coverable c);
+
     /**
      * Meghivja a strategiajanak az IsCovered() fuggvenyet,
      * vagyis megmondja, hogy fedett-e a mezo vagy sem.
      * @return fedett-e
      */
     public boolean IsCovered(){ return cover.IsCovered(); }
+
     /**
      * Visszater azzal, hogy megveallo-e a mezo
      *
@@ -138,6 +155,7 @@ public abstract class Field implements OutputToString {
     public boolean IsBearProof(){
         return cover.IsBearProof();
     }
+
     /**
      * Visszater a horeteg szamaval, ami a mezon talalhato
      *
@@ -145,6 +163,7 @@ public abstract class Field implements OutputToString {
     public int getLayerOfSnow() {
         return layerOfSnow;
     }
+
     /**
      *
      * @param LayerOfSnow beallitja a mezon levo ho mennyiseget a kapott ertekre
@@ -152,6 +171,7 @@ public abstract class Field implements OutputToString {
     public void setLayerOfSnow(int LayerOfSnow) {
         layerOfSnow = LayerOfSnow;
     }
+
     /**
      * A kimeneti nyelv miatt szukseges fuggveny, egy field szomszedos fieldjeibol csinal egy string-et
      * ami a field-ek id-jet felsorolja egymas utan space-el elvalasztva

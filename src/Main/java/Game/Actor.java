@@ -7,25 +7,25 @@ import Player.Player;
  */
 public interface Actor {
     /**
-     * actor actor talalkozas
-     * @param a
+     * actor actorral valo talalkozasa
+     * @param actor az Actor akivel talalkozik
      */
-    public abstract void Meet(Actor a);
+    void Meet(Actor actor);
 
     /**
-     * megmondja egy aktornak hogy o a soros
+     * actor sorra kerulese
      */
-    public abstract void HaveTurn() throws InterruptedException;
+    void HaveTurn() throws InterruptedException;
 
     /**
      * actor interakcioja playerrel
-     * @param p a player akivel az aktor interakcioba lep
+     * @param player a player akivel az aktor interakcioba lep
      */
-    public abstract void InteractWith(Player p);
+    void InteractWith(Player player);
 
     /**
      * actor interakcioja jegesmedvevel
-     * @param p a jegesmedve akivel interaktol az aktor
+     * @param polarBear a jegesmedve akivel interaktol az aktor
      */
-    public abstract void InteractWith(PolarBear p);
+    void InteractWith(PolarBear polarBear);
 }

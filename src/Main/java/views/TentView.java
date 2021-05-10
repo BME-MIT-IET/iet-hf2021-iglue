@@ -36,7 +36,7 @@ public class TentView implements IView {
         if (tent.getHolder() == null) {
             Field field = tent.getField();
             if(field.getLayerOfSnow()==0){
-                if(field.IsOpen())graphics.drawImage(image, field.X*64, field.Y*64, null );
+                if(field.isOpen())graphics.drawImage(image, field.X*64, field.Y*64, null );
                 else graphics.drawImage(imageO, field.X*64, field.Y*64, null );
             }
         }
