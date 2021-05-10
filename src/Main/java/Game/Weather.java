@@ -134,6 +134,6 @@ public final class Weather implements Actor{
     @Override
     public void InteractWith(Player player) {
         if(!player.getField().IsCovered())
-            player.DecrHp();
+            player.DecreaseHp();
     }
 }

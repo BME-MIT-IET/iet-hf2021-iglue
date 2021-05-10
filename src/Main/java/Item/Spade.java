@@ -23,7 +23,7 @@ public class Spade extends Item {
 
     @Override
     public void Use(Player p) {
-        this.getHolder().decreaseWorkUnits();
+        this.getHolder().DecreaseWorkUnits();
         Field field = p.getField();
         field.DecrLayerOfSnow(2);
         if(durability > 0){
