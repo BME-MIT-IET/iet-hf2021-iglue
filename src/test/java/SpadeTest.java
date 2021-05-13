@@ -36,7 +36,7 @@ class SpadeTest {
         spade.Use(mockPlayer);
 
         //Assert
-        verify(mockPlayer, times(1)).decreaseWorkUnits();
+        verify(mockPlayer, times(1)).DecreaseWorkUnits();
     }
 
     @Test
