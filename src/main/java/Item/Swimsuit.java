@@ -1,0 +1,29 @@
+package Item;
+
+import ClothesEquipped.SwimsuitEquipped;
+import Player.*;
+
+/**
+ * A buvarruhat reprezentalja a jatekban. Hasznalataval a jatekos vizallo lesz, igy ha vizbe esik onnan ki tud egyedul maszni, lepni.
+ */
+public class Swimsuit extends Item {
+    /**
+     *
+     * @param player a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
+     */
+    @Override
+    public void Use(Player player){
+        this.getHolder().DecreaseWorkUnits();
+        SwimsuitEquipped swimsuit = new SwimsuitEquipped();
+        player.setClothes(swimsuit);
+    }
+
+    /**
+     * toString hivasra az osztaly nevevel ter vissza
+     *
+     */
+    @Override
+    public String toString(){
+        return "swimsuit";
+    }
+}
