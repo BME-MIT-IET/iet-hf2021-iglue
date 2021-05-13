@@ -11,23 +11,22 @@ import Player.*;
 public class WinningItem extends Item {
     /**
      *
-     * @param p a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
+     * @param player a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
      */
     @Override
-    public void Use(Player p){
-
-         if (Manager.getInstance().WinningItemUsed()) {
-             p.EndTurn();
-             p.decreaseWorkUnits();
+    public void Use(Player player){
+         if (Manager.UseWinningItem()) {
+             player.EndTurn();
+             player.DecreaseWorkUnits();
          }
     }
     public int id;
     /**
      * A nyerotargy letrehozaskor regisztralodik a managerben
      */
-    public WinningItem(int _id){
-        id = _id;
-        Manager.getInstance().register(this);
+    public WinningItem(int id){
+        this.id = id;
+        Manager.register(this);
     }
 
     /**

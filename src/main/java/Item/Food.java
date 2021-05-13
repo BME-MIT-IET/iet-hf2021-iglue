@@ -9,13 +9,13 @@ import Player.*;
 public class Food extends Item {
     /**
      *
-     * @param p a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
+     * @param player a player akin az item hasznalva lesz (megegyezhet a haszan,lojaval is)
      */
     @Override
-    public void Use(Player p){
-        this.getHolder().decreaseWorkUnits();
-        p.IncrHp();
-        p.RemoveItem(this);
+    public void Use(Player player){
+        this.getHolder().DecreaseWorkUnits();
+        player.IncreaseHp();
+        player.RemoveItem(this);
     }
 
     /**

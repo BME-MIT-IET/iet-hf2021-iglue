@@ -10,12 +10,12 @@ public class Tent extends Item {
 
     /**
      * satorhasznalat
-     * @param p a player akin az item hasznalva lesz (megegyezhet a hasznalojaval is)
+     * @param player a player akin az item hasznalva lesz (megegyezhet a hasznalojaval is)
      */
     @Override
-    public void Use(Player p) {
-        this.getHolder().decreaseWorkUnits();
-        p.getField().Cover(new TentCover());
+    public void Use(Player player) {
+        this.getHolder().DecreaseWorkUnits();
+        player.getField().Cover(new TentCover());
         getHolder().RemoveItem(this);
     }
 
