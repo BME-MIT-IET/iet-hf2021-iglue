@@ -38,29 +38,29 @@ public class IceFieldTests {
 
     @io.cucumber.java.en.When("^the eskimos move to the field$")
     public void theEskimosMoveToTheField() {
-        for (var eskimo: eskimos) {
+        for (Eskimo eskimo: eskimos) {
             field.Accept(eskimo);
         }
     }
 
     @io.cucumber.java.en.And("^the researchers move to the field$")
     public void theResearchersMoveToTheField() {
-        for (var researcher: researchers) {
+        for (Researcher researcher: researchers) {
             field.Accept(researcher);
         }
     }
 
     @Then("none of the eskimos should be in water")
     public void noneOfTheEskimosShouldBeInWater() {
-        for (var e : eskimos) {
-            if (e.IsInWater()) fail();
+        for (Eskimo e : eskimos) {
+            if (e.isInWater()) fail();
         }
     }
 
     @And("none of the researchers should be in water")
     public void noneOfTheResearchersShouldBeInWater() {
-        for (var r : researchers) {
-            if (r.IsInWater()) fail();
+        for (Researcher r : researchers) {
+            if (r.isInWater()) fail();
         }
     }
 
@@ -73,8 +73,8 @@ public class IceFieldTests {
 
     @Then("all of the researchers should be in water")
     public void allOfTheResearchersShouldBeInWater() {
-        for (var r : researchers) {
-            if (!r.IsInWater()) fail();
+        for (Researcher r : researchers) {
+            if (!r.isInWater()) fail();
         }
     }
 

@@ -114,7 +114,7 @@ public class FrozenItemsTests {
 
     @When("the eskimo cleans the block")
     public void theEskimoCleansTheBlock() {
-        while (!field.IsOpen())
+        while (!field.isOpen())
             actor.Dig();
     }
 
