@@ -6,6 +6,7 @@ import Player.Researcher;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,33 +18,33 @@ public class IceFieldTests {
     List<Eskimo> eskimos = new ArrayList<>();
     List<Researcher> researchers = new ArrayList<>();
     
-    @io.cucumber.java.en.Given("^a stable ice field$")
+    @Given("^a stable ice field$")
     public void aStableIceField() {
         field.setCapacity(-1);
     }
 
-    @io.cucumber.java.en.Given("^(\\d+) eskimos$")
+    @Given("^(\\d+) eskimos$")
     public void eskimos(int numOfEskimos) {
         for (int i = 0; i < numOfEskimos; i++) {
             eskimos.add(new Eskimo());
         }
     }
 
-    @io.cucumber.java.en.Given("^(\\d+) researchers$")
+    @Given("^(\\d+) researchers$")
     public void researchers(int numOfResearchers) {
         for (int i = 0; i < numOfResearchers; i++) {
             researchers.add(new Researcher());
         }
     }
 
-    @io.cucumber.java.en.When("^the eskimos move to the field$")
+    @When("^the eskimos move to the field$")
     public void theEskimosMoveToTheField() {
         for (Eskimo eskimo: eskimos) {
             field.Accept(eskimo);
         }
     }
 
-    @io.cucumber.java.en.And("^the researchers move to the field$")
+    @And("^the researchers move to the field$")
     public void theResearchersMoveToTheField() {
         for (Researcher researcher: researchers) {
             field.Accept(researcher);
