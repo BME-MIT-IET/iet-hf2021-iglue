@@ -109,6 +109,7 @@ public class FrozenItemsTests {
     @And("an eskimo is standing on the block with energy level of {int}")
     public void anEskimoIsStandingOnTheBlockWithEnergyLevelOf(int energy) {
         actor = new Eskimo();
+        actor.setActualWorkUnit(energy);
         actor.setField(field);
     }
 
