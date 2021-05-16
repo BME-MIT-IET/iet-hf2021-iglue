@@ -83,7 +83,7 @@ Leírás: Iránymutató (Left, Up, Right, Down) megnyomása után Use Ability go
 
 Végeredmény:
 - Eskimo esetében megjelent az eskimo mezőjén egy iglu, csökkent Actual work unit értéke 1-el.
-- Researcher esetében a kijlölt mező felett megjelent egy szám, csökkent az Actual work unit értéke 1-el.
+- Researcher esetében a kijelölt mező felett megjelent egy szám, csökkent az Actual work unit értéke 1-el.
 
 **c)** ásás
 
@@ -92,7 +92,7 @@ Leírás: Dig gomb megnyomása.
 ![](img/feladat_3_Manualis_Test/asas1.jpg)
 ![](img/feladat_3_Manualis_Test/asas2.jpg)
 
-Végeredmény: Karakter alól eltünt a hó, csökkent Actual work unit értéke 1-el.
+Végeredmény: Karakter alól eltűnt a hó, csökkent Actual work unit értéke 1-el.
 
 **d)** tárgy felvétel
 
@@ -101,7 +101,7 @@ Leírás: Karakter olyan mező felett áll, ahol van tárgy és ki van ásva. Pi
 ![](img/feladat_3_Manualis_Test/targyfelvetel1.jpg)
 ![](img/feladat_3_Manualis_Test/targyfelvetel2.jpg)
 
-Végeredmény: Tárgy a karakter alól eltünt, megjelent az Items listában, csökkent Actual work unit értéke 1-el.
+Végeredmény: Tárgy a karakter alól eltűnt, megjelent az Items listában, csökkent Actual work unit értéke 1-el.
 
 **e)** tárgy használat
 
@@ -110,7 +110,7 @@ Leírás: karakternél van Food tárgy, ki van választva az Items listából. U
 ![](img/feladat_3_Manualis_Test/targyhasznalat1.jpg)
 ![](img/feladat_3_Manualis_Test/targyhasznalat2.jpg)
 
-Végeredmény: Tárgy elűnt az items listából, Actual work unit értéke csökkent 1-el.
+Végeredmény: Tárgy eltűnt az items listából, Actual work unit értéke csökkent 1-el.
 
 **f)** korai kör befejezés
 
@@ -241,7 +241,7 @@ Miután egy játékos kilépett a vízből, a karaktere utána is vizesnek néz 
 ![](img/feladat_3_Manualis_Test/hoasas1.jpg)
 ![](img/feladat_3_Manualis_Test/hoasas2.jpg)
 
-A képeken jól látható, hogy egy 4-es van a jobb felső sarokban, tehát 4 réteg vastag hó van a mezőn, az 1. és 2. kép között  1 dig művelet volt, de a hó eltünt, ráadásul még a szám sem csökkent pedig már minimum 1-el kisebb lett a hóréteg.
+A képeken jól látható, hogy egy 4-es van a jobb felső sarokban, tehát 4 réteg vastag hó van a mezőn, az 1. és 2. kép között  1 dig művelet volt, de a hó eltűnt, ráadásul még a szám sem csökkent pedig már minimum 1-el kisebb lett a hóréteg.
 
 ## Game over start
 
