@@ -14,17 +14,23 @@ Tesztek eredménye:
 
 **a)** ha nincs megadva név:
 
+Leírás: Player's name-hez tartozó textbox üres, Character típus választónál Eskimo kiválasztva.
+
 ![](img/feladat_3_Manualis_Test/jatekos_hozzaadas1.jpg)
 
 Végeredmény: Nem lett hozzáadva új karakter.
 
 **b)** ha nincs megadva karakter típus
 
+Leírás: Player's name-hez tartozó textbox tartalmaz valami stringet, Character típus választónál nincs semmi kiválasztva.
+
 ![](img/feladat_3_Manualis_Test/jatekos_hozzaadas2.jpg)
 
 Végeredmény: Nem lett hozzáadva új karakter.
 
 **c)** van név és karakter is kiválasztva
+
+Leírás: Player's name-hez tartozó textbox tartalmaz valami stringet, Character típus választónál Eskimo kiválasztva.
 
 ![](img/feladat_3_Manualis_Test/jatekos_hozzaadas3.jpg)
 
@@ -52,6 +58,8 @@ Teszt terv:
 
 **a)** karakter léptetése
 
+Leírás: Iránymutató (Left, Up, Right, Down) kiválasztása után Step gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/leptetes1.jpg)
 ![](img/feladat_3_Manualis_Test/leptetes2.jpg)
 
@@ -61,40 +69,52 @@ Végeredmény: a karakter pozíciója megváltozott. Csökkent az Actual work un
 
 Eskimo:
 
+Leírás: Use Ability gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/kepesseg1.jpg)
 ![](img/feladat_3_Manualis_Test/kepesseg2.jpg)
 
 Researcher:
+
+Leírás: Iránymutató (Left, Up, Right, Down) megnyomása után Use Ability gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/kepesseg3.jpg)
 ![](img/feladat_3_Manualis_Test/kepesseg4.jpg)
 
 Végeredmény:
 - Eskimo esetében megjelent az eskimo mezőjén egy iglu, csökkent Actual work unit értéke 1-el.
-- Researcher esetében a kijlölt mező felett megjelent egy szám, csökkent az Actual work unit értéke 1-el.
+- Researcher esetében a kijelölt mező felett megjelent egy szám, csökkent az Actual work unit értéke 1-el.
 
 **c)** ásás
+
+Leírás: Dig gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/asas1.jpg)
 ![](img/feladat_3_Manualis_Test/asas2.jpg)
 
-Végeredmény: Karakter alól eltünt a hó, csökkent Actual work unit értéke 1-el.
+Végeredmény: Karakter alól eltűnt a hó, csökkent Actual work unit értéke 1-el.
 
 **d)** tárgy felvétel
+
+Leírás: Karakter olyan mező felett áll, ahol van tárgy és ki van ásva. Pick Up Item gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/targyfelvetel1.jpg)
 ![](img/feladat_3_Manualis_Test/targyfelvetel2.jpg)
 
-Végeredmény: Tárgy a karakter alól eltünt, megjelent az Items listában, csökkent Actual work unit értéke 1-el.
+Végeredmény: Tárgy a karakter alól eltűnt, megjelent az Items listában, csökkent Actual work unit értéke 1-el.
 
 **e)** tárgy használat
+
+Leírás: karakternél van Food tárgy, ki van választva az Items listából. Use Item gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/targyhasznalat1.jpg)
 ![](img/feladat_3_Manualis_Test/targyhasznalat2.jpg)
 
-Végeredmény: Tárgy elűnt az items listából, Actual work unit értéke csökkent 1-el.
+Végeredmény: Tárgy eltűnt az items listából, Actual work unit értéke csökkent 1-el.
 
 **f)** korai kör befejezés
+
+Leírás: End turn gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/koraikorveg1.jpg)
 ![](img/feladat_3_Manualis_Test/koraikorveg2.jpg)
@@ -113,6 +133,8 @@ Teszt terv:
 
 **a)** úgy ásni, hogy a karakter alatt már nincs semmi ásható
 
+Leírás: Karakter olyan mezőn áll ahol nincs már tárgy, se hó, csak üres jég.
+
 ![](img/feladat_3_Manualis_Test/tobbszoriasas1.jpg)
 ![](img/feladat_3_Manualis_Test/tobbszoriasas2.jpg)
 ![](img/feladat_3_Manualis_Test/tobbszoriasas3.jpg)
@@ -123,6 +145,8 @@ Végeredmény: Actual work unit minden ásásnál csökken, pedig nincs mit ásn
 
 **b)** Pálya szélén kifele lépni
 
+Leírás: Karakter pálya határán áll, Pályán határának irányát kiválasztva a Karakterhez viszonyítva, Step gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/borderlepes1.jpg)
 ![](img/feladat_3_Manualis_Test/borderlepes2.jpg)
 ![](img/feladat_3_Manualis_Test/borderlepes3.jpg)
@@ -132,12 +156,16 @@ de a széle mentén lehetett lépni, ahol Actual work unit csökkent.
 
 **c)** Több ugyan olyan tárgy felvétele
 
+Leírás: Karakternél van egy Item , Karakter olyan mező felett áll amelyen egy ugyan olyan Item van, már kiásva. Pick Up Item gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/ugyanolyantargy1.jpg)
 ![](img/feladat_3_Manualis_Test/ugyanolyantargy2.jpg)
 
 Végeredmény: két ugyan olyan tárgy lesz az items listában.
 
 **d)** Játékos használ egy swimsuit-ot, majd még 1 swimsuit-ot
+
+Leírás: Karakternél az items listában van két Swimsuit Tárgy, előszőr az elsőt kiválasztva Use Item gomb megnyomása, majd a másikat kiválasztva Use Item gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/swimsuit1.jpg)
 ![](img/feladat_3_Manualis_Test/swimsuit2.jpg)
@@ -213,7 +241,7 @@ Miután egy játékos kilépett a vízből, a karaktere utána is vizesnek néz 
 ![](img/feladat_3_Manualis_Test/hoasas1.jpg)
 ![](img/feladat_3_Manualis_Test/hoasas2.jpg)
 
-A képeken jól látható, hogy egy 4-es van a jobb felső sarokban, tehát 4 réteg vastag hó van a mezőn, az 1. és 2. kép között  1 dig művelet volt, de a hó eltünt, ráadásul még a szám sem csökkent pedig már minimum 1-el kisebb lett a hóréteg.
+A képeken jól látható, hogy egy 4-es van a jobb felső sarokban, tehát 4 réteg vastag hó van a mezőn, az 1. és 2. kép között  1 dig művelet volt, de a hó eltűnt, ráadásul még a szám sem csökkent pedig már minimum 1-el kisebb lett a hóréteg.
 
 ## Game over start
 
