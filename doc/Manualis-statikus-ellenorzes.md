@@ -30,7 +30,7 @@ tartozó bugot, amit sikeresen javítottunk.
 
 ### Item package
 
-Találtunk pár felesleges változót, nem szép kódot, ezeket kijavítottuk. A BDD teszteknek köszönhetűen észrevettünk egy hibát az egyik függvény if feltételében, ezt kijavítottuk.
+Találtunk pár felesleges változót, nem szép kódot, ezeket kijavítottuk. A BDD teszteknek köszönhetően észrevettünk egy hibát az egyik függvény if feltételében, ezt kijavítottuk.
 
 ### Player package
 
