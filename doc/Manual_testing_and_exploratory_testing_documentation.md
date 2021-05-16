@@ -14,17 +14,23 @@ Tesztek eredménye:
 
 **a)** ha nincs megadva név:
 
+Leírás: Player's name-hez tartozó textbox üres, Character típus választónál Eskimo kiválasztva.
+
 ![](img/feladat_3_Manualis_Test/jatekos_hozzaadas1.jpg)
 
 Végeredmény: Nem lett hozzáadva új karakter.
 
 **b)** ha nincs megadva karakter típus
 
+Leírás: Player's name-hez tartozó textbox tartalmaz valami stringet, Character típus választónál nincs semmi kiválasztva.
+
 ![](img/feladat_3_Manualis_Test/jatekos_hozzaadas2.jpg)
 
 Végeredmény: Nem lett hozzáadva új karakter.
 
 **c)** van név és karakter is kiválasztva
+
+Leírás: Player's name-hez tartozó textbox tartalmaz valami stringet, Character típus választónál Eskimo kiválasztva.
 
 ![](img/feladat_3_Manualis_Test/jatekos_hozzaadas3.jpg)
 
@@ -52,6 +58,8 @@ Teszt terv:
 
 **a)** karakter léptetése
 
+Leírás: Iránymutató (Left, Up, Right, Down) kiválasztása után Step gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/leptetes1.jpg)
 ![](img/feladat_3_Manualis_Test/leptetes2.jpg)
 
@@ -61,10 +69,14 @@ Végeredmény: a karakter pozíciója megváltozott. Csökkent az Actual work un
 
 Eskimo:
 
+Leírás: Use Ability gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/kepesseg1.jpg)
 ![](img/feladat_3_Manualis_Test/kepesseg2.jpg)
 
 Researcher:
+
+Leírás: Iránymutató (Left, Up, Right, Down) megnyomása után Use Ability gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/kepesseg3.jpg)
 ![](img/feladat_3_Manualis_Test/kepesseg4.jpg)
@@ -75,12 +87,16 @@ Végeredmény:
 
 **c)** ásás
 
+Leírás: Dig gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/asas1.jpg)
 ![](img/feladat_3_Manualis_Test/asas2.jpg)
 
 Végeredmény: Karakter alól eltünt a hó, csökkent Actual work unit értéke 1-el.
 
 **d)** tárgy felvétel
+
+Leírás: Karakter olyan mező felett áll, ahol van tárgy és ki van ásva. Pick Up Item gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/targyfelvetel1.jpg)
 ![](img/feladat_3_Manualis_Test/targyfelvetel2.jpg)
@@ -89,12 +105,16 @@ Végeredmény: Tárgy a karakter alól eltünt, megjelent az Items listában, cs
 
 **e)** tárgy használat
 
+Leírás: karakternél van Food tárgy, ki van választva az Items listából. Use Item gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/targyhasznalat1.jpg)
 ![](img/feladat_3_Manualis_Test/targyhasznalat2.jpg)
 
 Végeredmény: Tárgy elűnt az items listából, Actual work unit értéke csökkent 1-el.
 
 **f)** korai kör befejezés
+
+Leírás: End turn gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/koraikorveg1.jpg)
 ![](img/feladat_3_Manualis_Test/koraikorveg2.jpg)
