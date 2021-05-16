@@ -133,6 +133,8 @@ Teszt terv:
 
 **a)** úgy ásni, hogy a karakter alatt már nincs semmi ásható
 
+Leírás: Karakter olyan mezőn áll ahol nincs már tárgy, se hó, csak üres jég.
+
 ![](img/feladat_3_Manualis_Test/tobbszoriasas1.jpg)
 ![](img/feladat_3_Manualis_Test/tobbszoriasas2.jpg)
 ![](img/feladat_3_Manualis_Test/tobbszoriasas3.jpg)
@@ -143,6 +145,8 @@ Végeredmény: Actual work unit minden ásásnál csökken, pedig nincs mit ásn
 
 **b)** Pálya szélén kifele lépni
 
+Leírás: Karakter pálya határán áll, Pályán határának irányát kiválasztva a Karakterhez viszonyítva, Step gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/borderlepes1.jpg)
 ![](img/feladat_3_Manualis_Test/borderlepes2.jpg)
 ![](img/feladat_3_Manualis_Test/borderlepes3.jpg)
@@ -152,12 +156,16 @@ de a széle mentén lehetett lépni, ahol Actual work unit csökkent.
 
 **c)** Több ugyan olyan tárgy felvétele
 
+Leírás: Karakternél van egy Item , Karakter olyan mező felett áll amelyen egy ugyan olyan Item van, már kiásva. Pick Up Item gomb megnyomása.
+
 ![](img/feladat_3_Manualis_Test/ugyanolyantargy1.jpg)
 ![](img/feladat_3_Manualis_Test/ugyanolyantargy2.jpg)
 
 Végeredmény: két ugyan olyan tárgy lesz az items listában.
 
 **d)** Játékos használ egy swimsuit-ot, majd még 1 swimsuit-ot
+
+Leírás: Karakternél az items listában van két Swimsuit Tárgy, előszőr az elsőt kiválasztva Use Item gomb megnyomása, majd a másikat kiválasztva Use Item gomb megnyomása.
 
 ![](img/feladat_3_Manualis_Test/swimsuit1.jpg)
 ![](img/feladat_3_Manualis_Test/swimsuit2.jpg)
