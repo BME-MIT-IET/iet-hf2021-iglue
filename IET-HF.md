@@ -1,4 +1,4 @@
-#A projekt célja
+# A projekt célja
 
 A projekt célja az, hogy egy, az egyetemi tanulmányaink során elkészített projektet az Integrációs és ellenőrzési 
 technikák tárgyban tanult technikákkal felfejlesszünk. Végeredményben, az átstruktúrálás, refaktorálás és tesztelés 
